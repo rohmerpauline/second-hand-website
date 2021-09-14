@@ -1,0 +1,18 @@
+/****************
+    VARIABLES
+****************/
+
+:root {
+    /* Colors */
+    --white : #ffffff;
+    --lightgray : #B9B9B9;
+    --purpledark : #4F5880;
+    --purplelight : #5271FF;
+    --yellow : #FFCD38;
+    --red : #F23005;
+    --grey : #D9D9D9;
+
+    --titlesmallscreen : 1.4em;
+    --titlemediumscreen : 1.8em;
+    --titlelargescreen : 2.2em;
+}

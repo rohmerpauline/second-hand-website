@@ -1,0 +1,39 @@
+/****************
+    HEADER
+****************/
+
+header {
+    height : 7em;
+    padding: 1.5em 2em;
+    display: grid;
+    grid-template-columns: max-content auto;
+    background-color: white;
+    position : fixed;
+    width: 100%;
+    box-shadow: 0px 0.5px 10px var(--lightgray);
+    top : 0;
+}
+
+.header--opacity {
+    filter: grayscale(0.5);
+}
+
+.header__burgermenu {
+    width: 100%;
+    color : var(--red);
+    font-size: 1.5em;
+    font-size: 2em;
+}
+
+.header__burgericone {
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.header__logocontainer {
+    text-align: center;
+}
+
+.header__logo {
+    height : 8em;
+}
