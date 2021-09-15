@@ -2,7 +2,7 @@
     HEADER
 ****************/
 
-header {
+.header {
     height : 7em;
     padding: 1.5em 2em;
     display: grid;
