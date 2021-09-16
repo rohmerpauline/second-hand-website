@@ -1,0 +1,66 @@
+/****************
+    NAVBAR
+****************/
+
+.container {
+    width : 100%;
+    height : 100%;
+    margin: 0;
+    top : 0;
+    left: 0;
+    position : fixed;
+    background-color: rgba(0,0,0,0.4);
+    color : #F23005;
+    font-weight: 500;
+    z-index : 1;
+ }
+ 
+ .content {
+     background-color : white;
+     width : 400px;
+     height: 100%;
+ }
+
+ 
+ .navhidden {
+     display: none;
+ }
+ 
+ .menu {
+     padding : 0;
+ }
+ 
+ .menu ul li:last-child {
+     bottom : 0;
+ }
+ 
+ .iconecontainer {
+     text-align: right;
+     padding : 1em 1em 0 0;
+     color : black;
+     
+ }
+ 
+ .icone {
+     font-size : 1.3em;
+     font-weight: 500;
+ }
+ 
+ .container li {
+     list-style : none;
+     padding : 1em 0 1em 0;
+     width : 100%;
+     color : var(--red);
+     text-align: center;
+     cursor: pointer;
+     text-transform: uppercase;
+ }
+ 
+.container li:hover {
+     transform : scale(1.05);
+     color : black;
+ }
+ 
+ /******************
+     MEDIA QUERIES
+ ******************/
