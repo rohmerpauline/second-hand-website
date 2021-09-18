@@ -1,12 +1,15 @@
 import Header from '../Header/Header'
 import ComponentProps from './props'
+import layoutStyle from '../../styles/Layout.module.css'
 
 const Layout = ({ children }: ComponentProps ) => {
     return (
         <>
-        <Header />
+        <Header/>
         <main>
-            { children } 
+            <div className={layoutStyle.container}>
+                { children }
+            </div>
         </main>
         </>
     )
