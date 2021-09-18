@@ -1,19 +1,10 @@
-import React, { useContext } from 'react'
+import Link from 'next/link'
 import NavBarItems from "../../Configs/NavBarItems"
 import { AiOutlineClose } from 'react-icons/ai'
-import Link from 'next/link'
 import navStyle from '../../styles/NavBar.module.css'
-import { NavBarContext } from "../../Contexts/NavBar/NavBarContext"
+import NavProps from './props'
 
-interface NavProps {
-    navbar: boolean,
-    toggleNavbar: ()=>boolean,
-}
-
-const NavBar = ({navbar, setNavbar}: NavProps) => {
-
-    /* const [navbar, setNavbar] = useContext(NavBarContext) */
-    const toggleNavbar = () => setNavbar(!navbar)
+const NavBar = ({navbar, toggleNavbar}: NavProps) => {
 
     return (
         <nav className={navbar ? navStyle.container : navStyle.navhidden} onClick={navbar === true ? toggleNavbar : null}>
