@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import router, { useRouter } from 'next/router'
+import router from 'next/router'
 import Link from 'next/link'
 import { NavBarContext } from "../../Contexts/NavBar/NavBarContext"
 import Image from 'next/image'
