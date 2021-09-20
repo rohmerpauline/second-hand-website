@@ -1,0 +1,33 @@
+/****************
+    FOOTER
+****************/
+
+.container {
+    background-color: var(--red);
+    width : 100%;
+    bottom: 0;
+    position: relative;
+    text-align: center;
+    margin-top: 7em;
+    padding-top: 0.4em;
+}
+
+.logo {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1.3em;
+    color: var(--white)
+}
+
+.links {
+    display : inline-flex;
+    color: var(--white);
+}
+
+.link {
+    margin : 1em;
+}
+
+/* .selector {
+
+} */
