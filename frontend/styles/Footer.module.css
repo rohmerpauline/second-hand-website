@@ -28,6 +28,6 @@
     margin : 1em;
 }
 
-/* .selector {
-
-} */
+.selector {
+    font-weight: 700;
+}
