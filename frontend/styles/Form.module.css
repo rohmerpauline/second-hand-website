@@ -42,13 +42,13 @@
     resize : none;
 }
 
-.form_checkboxcontainer {
-    display : inline-block;
+.checkboxcontainer {
+    display : inline;
 }
 
-/* .label {
+.label {
     font-weight: 300;
-} */
+}
 
 .buttoncontainer {
     text-align: center;

@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Form from '../components/Form/Form'
+import FormTitle from '../components/FormTitle/FormTitle'
 import connexionStyle from '../styles/Connexion.module.css'
 
 const login = () => {
 
+    const formTitle = {
+        title: 'Je me connecte'
+    }
+
     const formContent = {
-        title: 'Je me connecte',
         formInput: [
             {
                 id: 1,
@@ -51,6 +55,7 @@ const login = () => {
 
     return (
         <>
+            <FormTitle formTitle={formTitle}/>
             <Form 
              formContent={formContent}
              handleChange={handleLoginChange}
