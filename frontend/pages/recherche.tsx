@@ -1,8 +1,14 @@
+import AdCard from '../components/AdCart/AdCard'
+
 const recherche = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <AdCard></AdCard>
+            <AdCard></AdCard>
+            <AdCard></AdCard>
+            <AdCard></AdCard>
+            <AdCard></AdCard>
+        </>
     )
 }
 
