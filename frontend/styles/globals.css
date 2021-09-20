@@ -20,9 +20,8 @@ header {
 }
 
 main {
-  height:  100vh;
-  margin-top : 200px;
-  margin-bottom: 200px;
+  height: max-content;
+  margin-top : 250px;
   z-index: 0;
   position: relative;
 }
