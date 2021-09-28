@@ -7,7 +7,7 @@ const AdCard = () => {
 
     return (
         <>
-        <Link href='/login'>
+        <Link href={`/recherche/${1}`}>
         <article className={adStyle.container}>
             <div className={adStyle.containerImage}>
                     <Image src={marteau} alt='marteau' height={200} width={200} layout='fixed' />
