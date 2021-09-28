@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import Form from '../components/Form/Form'
-import FormTitle from '../components/FormTitle/FormTitle'
-import connexionStyle from '../styles/Connexion.module.css'
+import { useState } from 'react';
+import Link from 'next/link';
+import Form from '../components/Form/Form';
+import FormTitle from '../components/FormTitle/FormTitle';
+import connexionStyle from '../styles/Connexion.module.css';
 
 const register = () => {
 
     const formTitle = {
-        title: 'Je me connecte',
+        title: 'Je m\'enregistre',
         subtitle: 'Pour créer un compte, remplissez les champs suivants :'
     }
 
