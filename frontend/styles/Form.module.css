@@ -6,8 +6,6 @@
     color : black;
     font-size : var(--titlesmallscreen);
     font-weight : 300;
-    /* text-transform : uppercase; */
-    /* font-family : 'Limelight', cursive; */
 }
 
 .title, .subtitle {
