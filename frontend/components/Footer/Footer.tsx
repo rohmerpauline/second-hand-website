@@ -1,17 +1,21 @@
 import footerStyle from '../../styles/Footer.module.css'
 
 const Footer = () => {
+
+    const footerElement = ['Accueil', 'Qui sommes nous ?', 'Cookies', 'CGU']
+
     return (
         <footer className={footerStyle.container}>
             <p className={footerStyle.logo}>Bricomanquant</p>
             <div className={footerStyle.links}>
-                <p className={footerStyle.link}>Accueil</p>
-                <p className={footerStyle.selector}>|</p>
-                <p className={footerStyle.link}>Qui sommes nous ?</p>
-                <p className={footerStyle.selector}>|</p>
-                <p className={footerStyle.link}>Cookies</p>
-                <p className={footerStyle.selector}>|</p>
-                <p className={footerStyle.link}>CGU</p>
+                {footerElement.map((element, index) => {
+                    return (
+                        <>
+                        <p className={footerStyle.link}>{element}</p>
+                        <p className={footerStyle.separator}>|</p>
+                        </>
+                    )
+                })}
             </div>
         </footer>
     )
