@@ -39,4 +39,5 @@
 .logo {
     width : 15em;
     text-align: center;
+    cursor: pointer;
 }

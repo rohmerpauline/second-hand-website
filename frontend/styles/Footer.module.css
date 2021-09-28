@@ -21,6 +21,7 @@
 
 .links {
     display : inline-flex;
+    margin-bottom: 1em;
     color: var(--white);
 }
 
@@ -28,6 +29,10 @@
     margin : 1em;
 }
 
-.selector {
+.separator {
     font-weight: 700;
+}
+
+.separator:nth-last-child(1){
+    display: none;
 }
