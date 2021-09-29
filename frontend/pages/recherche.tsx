@@ -1,5 +1,5 @@
-import AdCard from '../components/AdCart/AdCard'
-import SearchBox from '../components/SearchBox/SearchBox'
+import AdCard from '../components/AdCart/AdCard';
+import SearchBox from '../components/SearchBox/SearchBox';
 
 const recherche = () => {
     return (
@@ -11,7 +11,7 @@ const recherche = () => {
             <AdCard></AdCard>
             <AdCard></AdCard>
         </>
-    )
-}
+    );
+};
 
-export default recherche
+export default recherche;

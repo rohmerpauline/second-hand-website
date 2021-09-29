@@ -3,13 +3,13 @@
 }
 
 .button {
-    background-color : var(--red);
-    color : var(--white);
-    width : max-content;
+    background-color: var(--red);
+    color: var(--white);
+    width: max-content;
     border: none;
-    font-size : 1.02em;
-    padding : 0.7em 2.3em;
-    border-radius : 20px;
-    margin : 1.3em 0 0 0;
+    font-size: 1.02em;
+    padding: 0.7em 2.3em;
+    border-radius: 20px;
+    margin: 1.3em 0 0 0;
     cursor: pointer;
 }

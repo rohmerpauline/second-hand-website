@@ -4,7 +4,7 @@
 
 .container {
     background-color: var(--red);
-    width : 100%;
+    width: 100%;
     bottom: 0;
     position: relative;
     text-align: center;
@@ -16,23 +16,23 @@
     text-transform: uppercase;
     font-weight: 300;
     font-size: 1.3em;
-    color: var(--white)
+    color: var(--white);
 }
 
 .links {
-    display : inline-flex;
+    display: inline-flex;
     margin-bottom: 1em;
     color: var(--white);
 }
 
 .link {
-    margin : 1em;
+    margin: 1em;
 }
 
 .separator {
     font-weight: 700;
 }
 
-.separator:nth-last-child(1){
+.separator:nth-last-child(1) {
     display: none;
 }

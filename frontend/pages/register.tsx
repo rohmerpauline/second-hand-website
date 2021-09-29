@@ -5,11 +5,10 @@ import FormTitle from '../components/FormTitle/FormTitle';
 import connexionStyle from '../styles/Connexion.module.css';
 
 const register = () => {
-
     const formTitle = {
-        title: 'Je m\'enregistre',
-        subtitle: 'Pour créer un compte, remplissez les champs suivants :'
-    }
+        title: "Je m'enregistre",
+        subtitle: 'Pour créer un compte, remplissez les champs suivants :',
+    };
 
     const formContent = {
         formInput: [
@@ -17,67 +16,69 @@ const register = () => {
                 id: 1,
                 type: 'text',
                 name: 'lastname',
-                placeholder: 'Mon nom'
+                placeholder: 'Mon nom',
             },
             {
                 id: 2,
                 type: 'text',
                 name: 'firstname',
-                placeholder: 'Mon prénom'
+                placeholder: 'Mon prénom',
             },
             {
                 id: 3,
                 type: 'email',
                 name: 'email',
-                placeholder: 'Mon adresse e-mail'
+                placeholder: 'Mon adresse e-mail',
             },
             {
                 id: 4,
                 type: 'password',
                 name: 'password',
-                placeholder: 'Mon mot de passe'
+                placeholder: 'Mon mot de passe',
             },
             {
                 id: 5,
                 type: 'password',
                 name: 'password_confirmation',
-                placeholder: 'Je confirme mon mot de passe'
+                placeholder: 'Je confirme mon mot de passe',
             },
         ],
-        buttonText: 'Je m\'enregistre'
-    }
+        buttonText: "Je m'enregistre",
+    };
 
     const [state, setState] = useState({
         lastname: '',
         firstname: '',
         email: '',
         password: '',
-        password_confirmation: ''
-    })
+        password_confirmation: '',
+    });
 
     const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value } = e.target
-        setState(prevState => ({ 
+        const { name, value } = e.target;
+        setState((prevState) => ({
             ...prevState,
-            [name]: value
-        }))
-    }
+            [name]: value,
+        }));
+    };
 
     const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-        e.preventDefault()
-    }
+        e.preventDefault();
+    };
 
     return (
         <>
-        <FormTitle formTitle={formTitle} />
-        <Form 
-            formContent={formContent}
-            handleChange={handleRegisterChange}
-            handleSubmit={handleRegisterSubmit}
-        />
-        <p className={connexionStyle.message}>J'ai déjà un compte, <Link href="/login"><span className={connexionStyle.registerlink}>se connecter</span></Link>.</p>
+            <FormTitle formTitle={formTitle} />
+            <Form formContent={formContent} handleChange={handleRegisterChange} handleSubmit={handleRegisterSubmit} />
+            <p className={connexionStyle.message}>
+                J'ai déjà un compte,{' '}
+                <Link href='/login'>
+                    <span className={connexionStyle.registerlink}>se connecter</span>
+                </Link>
+                .
+            </p>
         </>
-    )
-}
+    );
+};
 
-export default register
+export default register;

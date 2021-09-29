@@ -3,15 +3,15 @@
 ****************/
 
 .container {
-    height : 7em;
+    height: 7em;
     padding: 1.5em 2em;
     display: grid;
     grid-template-columns: max-content auto;
     background-color: var(--white);
-    position : fixed;
+    position: fixed;
     width: 100%;
     box-shadow: 0px 0.5px 10px var(--lightgray);
-    top : 0;
+    top: 0;
 }
 
 /* .container--opacity {
@@ -37,7 +37,7 @@
 }
 
 .logo {
-    width : 15em;
+    width: 15em;
     text-align: center;
     cursor: pointer;
 }
