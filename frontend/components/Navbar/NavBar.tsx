@@ -5,25 +5,22 @@ import navStyle from '../../styles/NavBar.module.css';
 import NavProps from './props';
 
 const NavBar = ({ navbar, toggleNavbar }: NavProps) => {
-    return (
-        <nav
-            className={navbar ? navStyle.container : navStyle.navhidden}
-            onClick={navbar === true ? toggleNavbar : null}
-        >
-            <div className={navStyle.content}>
-                <div className={navStyle.iconecontainer}>
-                    <AiOutlineClose className={navStyle.icone} onClick={toggleNavbar} />
-                </div>
-                <ul className={navStyle.menu} onClick={toggleNavbar}>
-                    {NavBarItems.map((item) => (
-                        <Link href={item.path} key={item.name}>
-                            <li>{item.name}</li>
-                        </Link>
-                    ))}
-                </ul>
+   return (
+      <nav className={navbar ? navStyle.container : navStyle.navhidden} onClick={navbar === true ? toggleNavbar : null}>
+         <div className={navStyle.content}>
+            <div className={navStyle.iconecontainer}>
+               <AiOutlineClose className={navStyle.icone} onClick={toggleNavbar} />
             </div>
-        </nav>
-    );
+            <ul className={navStyle.menu} onClick={toggleNavbar}>
+               {NavBarItems.map((item) => (
+                  <Link href={item.path} key={item.name}>
+                     <li>{item.name}</li>
+                  </Link>
+               ))}
+            </ul>
+         </div>
+      </nav>
+   );
 };
 
 export default NavBar;

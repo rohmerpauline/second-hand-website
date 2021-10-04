@@ -4,14 +4,14 @@
 ******************/
 
 .message {
-    margin-top: 0.6em;
+   margin-top: 0.6em;
 }
 
 .registerlink {
-    color: var(--red);
-    cursor: pointer;
+   color: var(--red);
+   cursor: pointer;
 }
 
 .registerlink:hover {
-    text-decoration: underline;
+   text-decoration: underline;
 }

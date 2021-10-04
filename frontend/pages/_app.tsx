@@ -4,12 +4,12 @@ import Layout from '../components/Layout/Layout';
 import NavBarContextProvider from '../Contexts/NavBar/NavBarContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return (
-        <NavBarContextProvider>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </NavBarContextProvider>
-    );
+   return (
+      <NavBarContextProvider>
+         <Layout>
+            <Component {...pageProps} />
+         </Layout>
+      </NavBarContextProvider>
+   );
 }
 export default MyApp;

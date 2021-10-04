@@ -5,36 +5,36 @@
 @import 'variables';
 
 * {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 1rem;
 }
 
 body {
-    width: 100%;
-    margin: 0;
+   width: 100%;
+   margin: 0;
 }
 
 header {
-    z-index: 1;
-    position: absolute;
+   z-index: 1;
+   position: absolute;
 }
 
 main {
-    height: max-content;
-    margin-top: 220px;
-    z-index: 0;
-    position: relative;
+   height: max-content;
+   margin-top: 220px;
+   z-index: 0;
+   position: relative;
 }
 
 a {
-    color: var(--white);
-    text-decoration: none;
+   color: var(--white);
+   text-decoration: none;
 }
 
 a:visited {
-    color: inherit;
+   color: inherit;
 }
 
 .display--none {
-    display: none;
+   display: none;
 }

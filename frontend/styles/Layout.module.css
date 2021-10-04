@@ -1,9 +1,9 @@
 .container {
-    width: 100%;
-    margin: 2em auto auto auto;
-    padding: 0 1.25em 2em 1.25em;
-    /* overflow : visible; */
-    box-sizing: border-box;
+   width: 100%;
+   margin: 2em auto auto auto;
+   padding: 0 1.25em 2em 1.25em;
+   /* overflow : visible; */
+   box-sizing: border-box;
 }
 
 /******************
@@ -13,19 +13,19 @@
 /** Medium screen **/
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .container {
-        width: 80%;
-        padding: 0 3.75em;
-        margin-top: 5em;
-    }
+   .container {
+      width: 80%;
+      padding: 0 3.75em;
+      margin-top: 5em;
+   }
 }
 
 /** Large screen **/
 
 @media screen and (min-width: 1024px) {
-    .container {
-        width: 70%;
-        padding: 0 4.25em;
-        margin-top: 5em;
-    }
+   .container {
+      width: 70%;
+      padding: 0 4.25em;
+      margin-top: 5em;
+   }
 }
