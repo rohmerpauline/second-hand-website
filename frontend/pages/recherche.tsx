@@ -1,4 +1,4 @@
-import AdCard from '../components/AdCart/AdCard';
+import AdCard from '../components/AdCard/AdCard';
 import SearchBox from '../components/SearchBox/SearchBox';
 
 const recherche = () => {
