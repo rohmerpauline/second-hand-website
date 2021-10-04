@@ -1,9 +1,17 @@
-const recherche = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+import AdCard from '../components/AdCart/AdCard';
+import SearchBox from '../components/SearchBox/SearchBox';
 
-export default recherche
+const recherche = () => {
+   return (
+      <>
+         <SearchBox />
+         <AdCard></AdCard>
+         <AdCard></AdCard>
+         <AdCard></AdCard>
+         <AdCard></AdCard>
+         <AdCard></AdCard>
+      </>
+   );
+};
+
+export default recherche;
