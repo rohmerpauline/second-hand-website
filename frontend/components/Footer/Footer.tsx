@@ -9,10 +9,10 @@ const Footer = () => {
          <div className={footerStyle.links}>
             {footerElement.map((element, index) => {
                return (
-                  <>
+                  <div key={index}>
                      <p className={footerStyle.link}>{element}</p>
                      <p className={footerStyle.separator}>|</p>
-                  </>
+                  </div>
                );
             })}
          </div>
