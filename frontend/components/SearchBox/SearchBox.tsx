@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Select from 'react-select';
 import Button from '../Button/Button';
+import { useHandleChange, useHandleSelect } from '../../hooks';
 import { BsPlusCircle } from 'react-icons/bs';
 import { FiMinusCircle } from 'react-icons/fi';
 
@@ -45,19 +46,12 @@ const SearchBox = () => {
       }
    };
 
-   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-      const { name, value } = e.target;
-      setState((prevState) => ({
-         ...prevState,
-         [name]: value,
-      }));
+   const handleInputChange = (e: any) => {
+      useHandleChange({ e, setState });
    };
 
-   const handleSelect = (e: any): void => {
-      setState((prevState) => ({
-         ...prevState,
-         [e.name]: e.value,
-      }));
+   const handleSelect = (e: any) => {
+      useHandleSelect({ e, setState });
    };
 
    return (
