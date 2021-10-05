@@ -1,0 +1,45 @@
+/******************
+    CREATE PRODUCT
+******************/
+
+.btn,
+.btnicone {
+   background: rgba(185, 185, 185, 0.3);
+}
+
+.btnicone,
+.btniconeselected {
+   padding: 0.4em 1em;
+   box-sizing: border-box;
+}
+
+.btn,
+.btnselected,
+.btnicone,
+.btniconeselected {
+   border: none;
+   border-radius: 5px;
+   margin-right: 0.8em;
+}
+
+.btn,
+.btnselected {
+   padding: 0.3em 0.5em;
+}
+
+.btn:hover,
+.btnselected:hover,
+.btnicone:hover,
+.btniconeselected:hover {
+   cursor: pointer;
+}
+.btnselected,
+.btniconeselected {
+   background-color: var(--red);
+   color: var(--white);
+}
+
+.tooltip {
+   /* background-color: #add6e4 !important; */
+   border: 1px solid #666;
+}

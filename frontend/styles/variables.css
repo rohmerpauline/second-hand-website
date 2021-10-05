@@ -3,16 +3,17 @@
 ****************/
 
 :root {
-    /* Colors */
-    --white : #ffffff;
-    --lightgray : #B9B9B9;
-    --purpledark : #4F5880;
-    --purplelight : #5271FF;
-    --yellow : #FFCD38;
-    --red : #F23005;
-    --grey : #D9D9D9;
+   /* Colors */
+   --white: #ffffff;
+   --lightgray: #b9b9b9;
+   --purpledark: #4f5880;
+   --purplelight: #5271ff;
+   --yellow: #ffcd38;
+   --red: #f23005;
+   --grey: #d9d9d9;
+   --black: black;
 
-    --titlesmallscreen : 1.4em;
-    --titlemediumscreen : 1.8em;
-    --titlelargescreen : 2.2em;
+   --titlesmallscreen: 1.4em;
+   --titlemediumscreen: 1.8em;
+   --titlelargescreen: 2.2em;
 }
