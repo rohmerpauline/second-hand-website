@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Form from '../components/Form/Form';
 import FormTitle from '../components/FormTitle/FormTitle';
+import { useHandleChange } from '../hooks';
 import connexionStyle from '../styles/Connexion.module.css';
 
 const register = () => {
@@ -54,12 +55,16 @@ const register = () => {
       password_confirmation: '',
    });
 
-   const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+   /* const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
       setState((prevState) => ({
          ...prevState,
          [name]: value,
       }));
+   }; */
+
+   const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+      useHandleChange({ e, setState });
    };
 
    const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -77,6 +82,7 @@ const register = () => {
             </Link>
             .
          </p>
+         {JSON.stringify(state)}
       </>
    );
 };
