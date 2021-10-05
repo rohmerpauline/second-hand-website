@@ -5,6 +5,7 @@
 .container {
    display: flex;
    align-items: top;
+   position: relative;
    border-radius: 5px;
    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
    margin-bottom: 2em;
@@ -13,6 +14,24 @@
 .container:hover {
    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
    cursor: pointer;
+}
+
+.favoriteIcone {
+   color: rgba(185, 185, 185, 0.5);
+}
+
+.favoriteIcone,
+.favoriteIconeActivate {
+   font-size: 1.2em;
+   float: right;
+   position: absolute;
+   right: 0.6em;
+   top: 0.6em;
+}
+
+.favoriteIconeActivate,
+.favoriteIcone:hover {
+   color: var(--red);
 }
 
 .containerImage {
