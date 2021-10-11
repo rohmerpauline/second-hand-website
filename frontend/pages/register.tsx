@@ -55,14 +55,6 @@ const register = () => {
       password_confirmation: '',
    });
 
-   /* const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setState((prevState) => ({
-         ...prevState,
-         [name]: value,
-      }));
-   }; */
-
    const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       useHandleChange({ e, setState });
    };
@@ -82,7 +74,7 @@ const register = () => {
             </Link>
             .
          </p>
-         {JSON.stringify(state)}
+         {/* {JSON.stringify(state)} */}
       </>
    );
 };
