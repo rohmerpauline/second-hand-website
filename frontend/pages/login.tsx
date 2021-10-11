@@ -39,16 +39,6 @@ const login = () => {
       password: '',
    });
 
-   /* const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      const target = e.target;
-      const name = e.target.name;
-      const value = target.type === 'checkbox' ? target.checked : target.value;
-      setState((prevState) => ({
-         ...prevState,
-         [name]: value,
-      }));
-   }; */
-
    const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       useHandleChange({ e, setState });
    };
@@ -68,7 +58,7 @@ const login = () => {
             </Link>
             .
          </p>
-         {JSON.stringify(state)}
+         {/* {JSON.stringify(state)} */}
       </>
    );
 };

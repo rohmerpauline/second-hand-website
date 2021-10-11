@@ -134,7 +134,7 @@ const creerannonce = () => {
             handleSelect={handleSelect}
             handleSubmit={handleProductSubmit}
          />
-         {JSON.stringify(state)}
+         {/* {JSON.stringify(state)} */}
       </>
    );
 };
