@@ -1,91 +1,55 @@
 /******************
-        AD
+        ADCARD
 ******************/
 
 .container {
+   display: block;
+}
+
+.adTitle {
+   font-size: 2em;
+   color: var(--red);
+}
+
+.buttons {
    display: flex;
-   align-items: top;
-   position: relative;
-   border-radius: 5px;
-   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-   margin-bottom: 2em;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
 }
 
-.container:hover {
-   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-   cursor: pointer;
+.favoriteContainer {
+   height: 100%;
+   margin: 1em 0 0 0;
+   text-align: right;
 }
 
-.favoriteIcone {
-   color: rgba(185, 185, 185, 0.5);
-}
-
-.favoriteIcone,
-.favoriteIconeActivate {
+.sectionTitle {
+   color: var(--red);
    font-size: 1.2em;
-   float: right;
-   position: absolute;
-   right: 0.6em;
-   top: 0.6em;
+   text-transform: uppercase;
+   padding: 0.5em 0em;
 }
 
-.favoriteIconeActivate,
-.favoriteIcone:hover {
-   color: var(--red);
-}
-
-.containerImage {
-   padding: 2em;
-}
-
-.adText {
-   padding-right: 2em;
-}
-
-.title {
-   padding-top: 2em;
-   margin-top: 0;
-   color: var(--red);
-}
-
-.subTitle {
-   font-style: italic;
+.adDescription {
+   line-height: 1.4em;
    font-weight: 300;
-   font-size: 0.9em;
 }
 
-.description {
-   font-size: 0.9em;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 4; /* number of lines to show */
-   -webkit-box-orient: vertical;
-}
-
-.details {
+.detailsContainer {
    display: flex;
 }
 
-.detailsState,
-.detailsTypeAd,
-.detailsCategory {
+.detailsPart {
+   display: grid;
+   grid-template-columns: 50% 50%;
+}
+
+.detailsTitle {
+   font-weight: 500;
+   padding-right: 0.5em;
+}
+
+.detailsText {
    font-weight: 300;
-   font-size: 0.9em;
-}
-
-.detailsState,
-.detailsTypeAd {
-   margin-right: 1em;
-}
-
-.detailsTypeAd,
-.detailsCategory {
-   margin-left: 1em;
-}
-
-.separator {
-   font-weight: 800;
-   font-size: 0.9em;
-   color: var(--red);
 }
