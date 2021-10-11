@@ -3,8 +3,6 @@ import ReactTooltip from 'react-tooltip';
 import Form from '../components/Form/Form';
 import FormTitle from '../components/FormTitle/FormTitle';
 import { useHandleChange, useHandleSelect } from '../hooks';
-import CategoriesItems from '../Configs/CategoriesItems';
-import ObjectConditionItems from '../Configs/ObjectConditionItems';
 import { OFFER_OBJECT, ASK_OBJECT, ASK_SERVICE, OFFER_SERVICE } from '../Configs/CreateProductFormContent';
 
 import createAddStyle from '../styles/CreateAdd.module.css';
