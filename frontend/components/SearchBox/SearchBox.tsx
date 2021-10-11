@@ -148,7 +148,6 @@ const SearchBox = () => {
             )}
             <p className={searchStyle.filterText}>{filter ? 'Masquer les filtres' : 'Recherche détaillée'}</p>
          </div>
-         {JSON.stringify(state)}
          <div className={searchStyle.btnContainer}>
             <Button buttonText='Je recherche' />
          </div>
