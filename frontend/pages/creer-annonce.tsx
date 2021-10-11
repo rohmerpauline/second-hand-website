@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 import Form from '../components/Form/Form';
 import FormTitle from '../components/FormTitle/FormTitle';
+import { useHandleChange, useHandleSelect } from '../hooks';
 import { OFFER_OBJECT, ASK_OBJECT, ASK_SERVICE, OFFER_SERVICE } from '../Configs/CreateProductFormContent';
 
 import createAddStyle from '../styles/CreateAdd.module.css';
@@ -55,19 +56,12 @@ const creerannonce = () => {
       }
    }, [button]);
 
-   const handleProductChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-      const { name, value } = e.target;
-      setState((prevState) => ({
-         ...prevState,
-         [name]: value,
-      }));
+   const handleProductChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+      useHandleChange({ e, setState });
    };
 
    const handleSelect = (e: any): void => {
-      setState((prevState) => ({
-         ...prevState,
-         [e.name]: e.value,
-      }));
+      useHandleSelect({ e, setState });
    };
 
    const handleProductSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -138,7 +132,7 @@ const creerannonce = () => {
             handleSelect={handleSelect}
             handleSubmit={handleProductSubmit}
          />
-         {JSON.stringify(state)}
+         {/* {JSON.stringify(state)} */}
       </>
    );
 };

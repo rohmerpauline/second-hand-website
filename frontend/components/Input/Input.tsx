@@ -5,32 +5,28 @@ import InputProps from './props';
 const Input = ({ id, label, name, placeholder, typeInput, handleChange }: InputProps) => {
    let inputElement: ReactElement<HTMLElement>;
 
-   switch (typeInput as any) {
-      case typeInput === 'textarea':
-         inputElement = (
-            <textarea
-               className={formStyle.textarea}
-               name={name}
-               rows={7}
-               placeholder={placeholder}
-               onChange={handleChange}
-            ></textarea>
-         );
-         break;
-      case typeInput === 'checkbox':
-         inputElement = <input type={typeInput} name={name} onChange={handleChange}></input>;
-         break;
-      default:
-         inputElement = (
-            <input
-               className={formStyle.input}
-               type={typeInput}
-               name={name}
-               placeholder={placeholder}
-               onChange={handleChange}
-            ></input>
-         );
-         break;
+   if (typeInput === 'textarea') {
+      inputElement = (
+         <textarea
+            className={formStyle.textarea}
+            name={name}
+            rows={7}
+            placeholder={placeholder}
+            onChange={handleChange}
+         ></textarea>
+      );
+   } else if (typeInput === 'checkbox') {
+      inputElement = <input type={typeInput} name={name} onChange={handleChange}></input>;
+   } else {
+      inputElement = (
+         <input
+            className={formStyle.input}
+            type={typeInput}
+            name={name}
+            placeholder={placeholder}
+            onChange={handleChange}
+         ></input>
+      );
    }
 
    return (

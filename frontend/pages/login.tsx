@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Form from '../components/Form/Form';
 import FormTitle from '../components/FormTitle/FormTitle';
+import { useHandleChange } from '../hooks';
 import connexionStyle from '../styles/Connexion.module.css';
 
 const login = () => {
@@ -39,13 +40,7 @@ const login = () => {
    });
 
    const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      const target = e.target;
-      const name = e.target.name;
-      const value = target.type === 'checkbox' ? target.checked : target.value;
-      setState((prevState) => ({
-         ...prevState,
-         [name]: value,
-      }));
+      useHandleChange({ e, setState });
    };
 
    const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -63,6 +58,7 @@ const login = () => {
             </Link>
             .
          </p>
+         {/* {JSON.stringify(state)} */}
       </>
    );
 };

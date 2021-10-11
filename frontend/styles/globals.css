@@ -38,3 +38,11 @@ a:visited {
 .display--none {
    display: none;
 }
+
+hr {
+   width: 20%;
+   margin: 2em auto 1em auto;
+   background-color: var(--red);
+   border: none;
+   height: 1px;
+}

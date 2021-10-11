@@ -26,26 +26,25 @@ const Form = ({ formContent, handleChange, handleSubmit, handleSelect }: FormPro
          {formInput.map((element) => {
             if (element.type === 'select') {
                return (
-                  <>
-                     <div key={element.id} className={formStyle.inputcontainer}>
-                        <label htmlFor={element.name} className={formStyle.label}>
-                           {element.label}
-                        </label>
-                        <Select
-                           isSearchable={true}
-                           defaultValue={element.defaultValue}
-                           options={element.options}
-                           styles={customStyles}
-                           name={element.name}
-                           onChange={handleSelect}
-                        ></Select>
-                     </div>
-                  </>
+                  <div key={element.name} className={formStyle.inputcontainer}>
+                     <label htmlFor={element.name} className={formStyle.label}>
+                        {element.label}
+                     </label>
+                     <Select
+                        isSearchable={true}
+                        defaultValue={element.defaultValue}
+                        options={element.options}
+                        styles={customStyles}
+                        name={element.name}
+                        onChange={handleSelect}
+                     ></Select>
+                  </div>
                );
             } else {
                return (
                   <Input
                      id={element.id}
+                     key={element.name}
                      label={element.label}
                      name={element.name}
                      placeholder={element.placeholder}
