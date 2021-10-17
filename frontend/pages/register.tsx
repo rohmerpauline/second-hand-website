@@ -5,6 +5,7 @@ import FormTitle from '../components/FormTitle/FormTitle';
 import { useHandleChange } from '../hooks';
 import connexionStyle from '../styles/Connexion.module.css';
 import axios from 'axios';
+import router from 'next/router';
 
 const formTitle = {
    title: "Je m'enregistre",
@@ -79,10 +80,11 @@ const register = () => {
          data: payload,
       })
          .then(function (response) {
-            console.log(response.data);
+            if (response.data === 'User created') {
+               router.push('/');
+            }
          })
          .catch((error) => {
-            console.log(error);
             setError(error);
          });
    };
