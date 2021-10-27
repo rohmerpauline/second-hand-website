@@ -26,14 +26,13 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.group(() => {
-
-  Route.post('register', 'UsersController.register').as('register')
+/* Route.group(() => {
+  Route.post('register', 'UsersController.register')
   Route.post('login', 'UsersController.login')
+}).prefix('api') */
 
-}).prefix('api')
-
-Route.get('user', 'UsersController.index')
+Route.post('register', 'UsersController.register').prefix('api')
+Route.post('login', 'UsersController.login').prefix('api')
 
 Route.get('health', async ({ response }) => {
   const report = await HealthCheck.getReport()
