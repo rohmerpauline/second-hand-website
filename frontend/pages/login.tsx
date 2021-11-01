@@ -4,6 +4,8 @@ import Form from '../components/Form/Form';
 import FormTitle from '../components/FormTitle/FormTitle';
 import { useHandleChange } from '../hooks';
 import connexionStyle from '../styles/Connexion.module.css';
+import axios from 'axios';
+import router from 'next/router';
 
 const login = () => {
    const formTitle = {
@@ -27,7 +29,7 @@ const login = () => {
          {
             id: 3,
             type: 'checkbox',
-            name: 'rememberMeToken',
+            name: 'remember_me',
             label: 'Remember me',
          },
       ],
@@ -37,7 +39,10 @@ const login = () => {
    const [state, setState] = useState({
       email: '',
       password: '',
+      remember_me: false,
    });
+
+   const [error, setError] = useState('');
 
    const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       useHandleChange({ e, setState });
@@ -45,12 +50,31 @@ const login = () => {
 
    const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
       e.preventDefault();
+
+      const payload = {
+         email: state.email,
+         password: state.password,
+         rememberMe: state.remember_me,
+      };
+
+      axios({
+         method: 'post',
+         url: '/api/login',
+         data: payload,
+      })
+         .then(function (response) {
+            console.log(response.data);
+         })
+         .catch((error) => {
+            setError(error);
+            console.log(error);
+         });
    };
 
    return (
       <>
          <FormTitle formTitle={formTitle} />
-         <Form formContent={formContent} handleChange={handleLoginChange} handleSubmit={handleLoginSubmit} />
+         <Form formContent={formContent} handleChange={handleLoginChange} handleSubmit={(e) => handleLoginSubmit(e)} />
          <p className={connexionStyle.message}>
             Je n'ai pas de compte,{' '}
             <Link href='/register'>

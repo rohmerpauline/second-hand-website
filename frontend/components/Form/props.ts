@@ -16,6 +16,6 @@ export default interface FormProps {
         hiddenInputValue?: string,
     }
     handleChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
-    handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void
+    handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void,
     handleSelect?: (e: any) => void
 }
