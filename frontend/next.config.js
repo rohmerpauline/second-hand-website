@@ -2,16 +2,11 @@
 
 module.exports = {
    reactStrictMode: true,
-   async rewrites() {
-      return [
-         {
-            source: '/api/login',
-            destination: 'http://127.0.0.1:3333/api/login',
-         },
-         {
-            source: '/api/register',
-            destination: 'http://127.0.0.1:3333/api/register',
-         },
-      ];
+   env: {
+      MYSQL_HOST: '127.0.0.1',
+      MYSQL_PORT: '3306',
+      MYSQL_DATABASE: 'secondhandwebapp',
+      MYSQL_USER: 'root',
+      MYSQL_PASSWORD: '',
    },
 };
