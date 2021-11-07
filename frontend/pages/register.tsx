@@ -76,17 +76,21 @@ const register = () => {
 
       axios({
          method: 'post',
-         url: '/api/register',
+         url: '/api/account/register',
          data: payload,
       })
          .then(function (response) {
-            if (response.data === 'User created') {
+            /* console.log(response); */
+            /* if (response.data === 'User created') {
                router.push('/');
-            }
+            } */
          })
          .catch((error) => {
+            console.log(error.response.data);
             setError(error);
          });
+
+      /* console.log(error); */
    };
 
    return (

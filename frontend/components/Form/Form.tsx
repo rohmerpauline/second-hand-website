@@ -43,7 +43,7 @@ const Form = ({ formContent, handleChange, handleSubmit, handleSelect }: FormPro
             } else {
                return (
                   <Input
-                     id={element.id}
+                     id={element.name}
                      key={element.name}
                      label={element.label}
                      name={element.name}

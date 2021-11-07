@@ -59,7 +59,7 @@ const login = () => {
 
       axios({
          method: 'post',
-         url: '/api/login',
+         url: '/api/account/login',
          data: payload,
       })
          .then(function (response) {
@@ -69,6 +69,19 @@ const login = () => {
             setError(error);
             console.log(error);
          });
+
+      /*  axios({
+         method: 'post',
+         url: '/api/login',
+         data: payload,
+      })
+         .then(function (response) {
+            console.log(response.data);
+         })
+         .catch((error) => {
+            setError(error);
+            console.log(error);
+         }); */
    };
 
    return (
