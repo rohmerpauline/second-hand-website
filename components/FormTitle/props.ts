@@ -1,6 +1,4 @@
 export default interface FormTitleProps {
-    formTitle: {
-        title: string,
-        subtitle?: string,
-    }
+    title: string,
+    subtitle?: string,
 }

@@ -1,11 +1,11 @@
 import FormTitleProps from './props';
 import formStyle from '../../styles/Form.module.css';
 
-const FormTitle = ({ formTitle }: FormTitleProps) => {
+const FormTitle = ({ title, subtitle }: FormTitleProps) => {
    return (
       <div>
-         <h1 className={formStyle.title}>{formTitle.title}</h1>
-         <p className={formStyle.subtitle}>{formTitle.subtitle}</p>
+         <h1 className={formStyle.title}>{title}</h1>
+         <p className={formStyle.subtitle}>{subtitle}</p>
       </div>
    );
 };
