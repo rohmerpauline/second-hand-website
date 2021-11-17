@@ -1,0 +1,92 @@
+/******************
+   STYLE OF FORMS
+******************/
+
+.title {
+   color: black;
+   font-size: var(--titlesmallscreen);
+   font-weight: 300;
+}
+
+.title,
+.subtitle {
+   text-align: left;
+}
+
+.subtitle:last-of-type {
+   font-style: italic;
+   font-weight: 300;
+}
+
+.inputcontainer {
+   margin: 1em 0 0 0;
+}
+
+.input,
+.textarea {
+   box-sizing: border-box;
+   width: 100%;
+   border-radius: 5px;
+   border: 1px solid var(--lightgray);
+   margin: 0.4em auto;
+}
+
+.input {
+   height: 2.5em;
+   padding: 0em 0.8em;
+}
+
+.textarea {
+   padding: 0.5em 0.8em;
+   line-height: 1.4em;
+   resize: none;
+}
+
+.checkboxcontainer {
+   display: inline;
+   align-items: center;
+   justify-content: left;
+}
+
+.label {
+   font-weight: 300;
+}
+
+.message {
+   margin-top: 0.6em;
+}
+
+.registerlink {
+   color: var(--red);
+   cursor: pointer;
+}
+
+.registerlink:hover {
+   text-decoration: underline;
+}
+
+/******************
+    MEDIA QUERIES
+******************/
+
+/** Medium screen **/
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+   .title {
+      font-size: var(--titlemediumscreen);
+   }
+   .input {
+      margin: 0.8em auto;
+   }
+}
+
+/** Large screen **/
+
+@media screen and (min-width: 1024px) {
+   .title {
+      font-size: var(--titlelargescreen);
+   }
+   .input {
+      margin: 1em auto;
+   }
+}
