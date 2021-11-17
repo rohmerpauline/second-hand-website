@@ -2,40 +2,15 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Form from '../components/Form/Form';
 import FormTitle from '../components/FormTitle/FormTitle';
+import Label from '../components/Label/Label';
 import { useHandleChange } from '../hooks';
 import connexionStyle from '../styles/Connexion.module.css';
 import axios from 'axios';
 import router from 'next/router';
+import Input from '../components/Input/Input';
+import Button from '../components/Button/Button';
 
 const login = () => {
-   const formTitle = {
-      title: 'Je me connecte',
-   };
-
-   const formContent = {
-      formInput: [
-         {
-            id: 1,
-            type: 'text',
-            name: 'email',
-            placeholder: 'Mon adresse email',
-         },
-         {
-            id: 2,
-            type: 'password',
-            name: 'password',
-            placeholder: 'Mon mot de passe',
-         },
-         {
-            id: 3,
-            type: 'checkbox',
-            name: 'remember_me',
-            label: 'Remember me',
-         },
-      ],
-      buttonText: 'Je me connecte',
-   };
-
    const [state, setState] = useState({
       email: '',
       password: '',
@@ -86,8 +61,13 @@ const login = () => {
 
    return (
       <>
-         <FormTitle formTitle={formTitle} />
-         <Form formContent={formContent} handleChange={handleLoginChange} handleSubmit={(e) => handleLoginSubmit(e)} />
+         <FormTitle title='Je me connecte' />
+         <form onSubmit={handleLoginSubmit}>
+            <Input name='email' placeholder='Mon email' onChange={handleLoginChange} />
+            <Input type='password' name='password' placeholder='Mon mot de passe' onChange={handleLoginChange} />
+            <Input type='checkbox' name='remember_me' onChange={handleLoginChange} label='Remember me' />
+            <Button>Je me connecte</Button>
+         </form>
          <p className={connexionStyle.message}>
             Je n'ai pas de compte,{' '}
             <Link href='/register'>
@@ -95,7 +75,7 @@ const login = () => {
             </Link>
             .
          </p>
-         {/* {JSON.stringify(state)} */}
+         {JSON.stringify(state)}
       </>
    );
 };

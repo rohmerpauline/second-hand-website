@@ -2,10 +2,15 @@ import { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 import Form from '../components/Form/Form';
 import FormTitle from '../components/FormTitle/FormTitle';
+import AdButton from '../components/AdButton/AdButton';
+import Button from '../components/Button/Button';
+import Input from '../components/Input/Input';
+import SelectInput from '../components/SelectInput/SelectInput';
+import CategoriesItems from '../Configs/CategoriesItems';
+import ObjectConditionItems from '../Configs/ObjectConditionItems';
 import { useHandleChange, useHandleSelect } from '../hooks';
-import { OFFER_OBJECT, ASK_OBJECT, ASK_SERVICE, OFFER_SERVICE } from '../Configs/CreateProductFormContent';
+/* import { OFFER_OBJECT, ASK_OBJECT, ASK_SERVICE, OFFER_SERVICE } from '../Configs/CreateProductFormContent'; */
 
-import createAddStyle from '../styles/CreateAdd.module.css';
 import { FaHandsHelping, FaHandHolding } from 'react-icons/fa';
 
 const buttonContent = {
@@ -16,10 +21,9 @@ const buttonContent = {
 };
 
 const creerannonce = () => {
-   const [button, setButton] = useState('Objet');
+   const [buttonSelected, setButtonSelected] = useState('Objet');
    const [subButtons, setSubButtons] = useState([]);
-   const [subButton, setSubButton] = useState('');
-   const [formContentInput, setFormContentInput] = useState([]);
+   const [subButtonSelected, setSubButtonSelected] = useState('');
 
    const [state, setState] = useState({
       title: '',
@@ -33,28 +37,19 @@ const creerannonce = () => {
    useEffect(() => {
       setState((prevState) => ({
          ...prevState,
-         typeOfAdd: subButton,
+         typeOfAdd: subButtonSelected,
       }));
-   }, [subButton]);
-
-   const formTitle = {
-      title: 'Je créer une annonce',
-   };
-
-   const formContent = {
-      formInput: formContentInput,
-      buttonText: 'Je créer mon annonce',
-   };
+   }, [subButtonSelected]);
 
    useEffect(() => {
-      if (button === buttonContent.btnObject) {
+      if (buttonSelected === buttonContent.btnObject) {
          setSubButtons(buttonContent.subButtonObject);
-         setSubButton(buttonContent.subButtonObject[0]);
+         setSubButtonSelected(buttonContent.subButtonObject[0]);
       } else {
          setSubButtons(buttonContent.subButtonService);
-         setSubButton(buttonContent.subButtonService[0]);
+         setSubButtonSelected(buttonContent.subButtonService[0]);
       }
-   }, [button]);
+   }, [buttonSelected]);
 
    const handleProductChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       useHandleChange({ e, setState });
@@ -68,71 +63,85 @@ const creerannonce = () => {
       e.preventDefault();
    };
 
-   useEffect(() => {
-      switch (subButton) {
-         case buttonContent.subButtonObject[0]:
-            setFormContentInput(OFFER_OBJECT);
-            break;
-         case buttonContent.subButtonObject[1]:
-            setFormContentInput(ASK_OBJECT);
-            break;
-         case buttonContent.subButtonService[0]:
-            setFormContentInput(ASK_SERVICE);
-            break;
-         case buttonContent.subButtonService[1]:
-            setFormContentInput(OFFER_SERVICE);
-            break;
-         default: //default
-      }
-   }, [subButton]);
+   const selectCategory = CategoriesItems.map((category) => ({
+      value: category.value,
+      label: category.label,
+      name: category.name,
+   }));
+
+   const selectObjectCondition = ObjectConditionItems.map((objectcondition) => ({
+      value: objectcondition.value,
+      label: objectcondition.label,
+      name: objectcondition.name,
+   }));
 
    return (
       <>
-         <button
-            onClick={() => setButton(buttonContent.btnObject)}
-            className={button === buttonContent.btnObject ? createAddStyle.btniconeselected : createAddStyle.btnicone}
-            data-tip
-            data-for='object-tip'
-            data-delay-show='500'
+         <AdButton
+            buttonSelected={buttonSelected}
+            onClickButton={setButtonSelected}
+            buttonContent={'Objet'}
+            tooltip={true}
          >
             <FaHandHolding size={20} />
-         </button>
-         <ReactTooltip id='object-tip' place='right' effect='float' arrowColor='black' delayShow={500}>
-            Objet
-         </ReactTooltip>
-         <button
-            onClick={() => setButton(buttonContent.btnService)}
-            className={button === buttonContent.btnService ? createAddStyle.btniconeselected : createAddStyle.btnicone}
-            data-tip
-            data-for='service-tip'
-            data-delay-show='500'
+         </AdButton>
+         <AdButton
+            buttonSelected={buttonSelected}
+            onClickButton={setButtonSelected}
+            buttonContent={'Service'}
+            tooltip={true}
          >
             <FaHandsHelping size={20} />
-         </button>
-         <ReactTooltip id='service-tip' place='right' effect='float' arrowColor='black' delayShow={500}>
-            Service
-         </ReactTooltip>
-         <FormTitle formTitle={formTitle} />
-         {subButtons &&
-            subButtons.map((button, index) => {
-               return (
-                  <button
-                     key={index}
-                     onClick={() => setSubButton(button)}
-                     type='button'
-                     className={button === subButton ? createAddStyle.btnselected : createAddStyle.btn}
-                  >
-                     {button}
-                  </button>
-               );
-            })}
-         <Form
-            formContent={formContent}
-            handleChange={handleProductChange}
-            handleSelect={handleSelect}
-            handleSubmit={handleProductSubmit}
-         />
-         {/* {JSON.stringify(state)} */}
+         </AdButton>
+         <FormTitle title='Je créer une annonce' />
+         <AdButton
+            buttonSelected={subButtonSelected}
+            onClickButton={setSubButtonSelected}
+            buttonContent={subButtons[0]}
+         >
+            {subButtons[0]}
+         </AdButton>
+         <AdButton
+            buttonSelected={subButtonSelected}
+            onClickButton={setSubButtonSelected}
+            buttonContent={subButtons[1]}
+         >
+            {subButtons[1]}
+         </AdButton>
+         <form onSubmit={handleProductSubmit}>
+            <Input
+               name='title'
+               placeholder='plante, meuble-tv, lampe...'
+               label='Titre de mon annonce :'
+               onChange={handleProductChange}
+            />
+            <Input
+               name='description'
+               type='textarea'
+               placeholder='En super bon état. À venir chercher entre 10h et 12h.'
+               label='Descriptif de mon annonce :'
+               onChange={handleProductChange}
+            />
+            <Input
+               name='location'
+               placeholder='Bruxelles, Namur, Liège...'
+               label='Lieu de mon annonce :'
+               onChange={handleProductChange}
+            />
+            {(subButtonSelected === 'Je donne' || subButtonSelected === 'Je demande') && (
+               <SelectInput name='categories' options={selectCategory} onChange={handleSelect} label='Catégories' />
+            )}
+            {subButtonSelected === 'Je donne' && (
+               <SelectInput
+                  name='objectcondition'
+                  options={selectObjectCondition}
+                  onChange={handleSelect}
+                  label='Catégories'
+               />
+            )}
+            <Button>Je créer mon annonce</Button>
+            {/* {JSON.stringify(state)} */}
+         </form>
       </>
    );
 };
