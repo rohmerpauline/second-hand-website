@@ -44,6 +44,8 @@
 
 .checkboxcontainer {
    display: inline;
+   align-items: center;
+   justify-content: left;
 }
 
 .label {
