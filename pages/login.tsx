@@ -1,26 +1,30 @@
 import { useState } from 'react';
-import Link from 'next/link';
-import Form from '../components/Form/Form';
-import FormTitle from '../components/FormTitle/FormTitle';
-import Label from '../components/Label/Label';
-import { useHandleChange } from '../hooks';
-import connexionStyle from '../styles/Connexion.module.css';
-import axios from 'axios';
 import router from 'next/router';
-import Input from '../components/Input/Input';
-import Button from '../components/Button/Button';
+import axios from 'axios';
+import Link from 'next/link';
+
+import FormTitle from '../components/Form/FormTitle/FormTitle';
+import Label from '../components/Form/Label/Label';
+import FormikControl from '../components/Form/FormikControl/FormikControl';
+import Input from '../components/Form/Input/Input';
+import TextArea from '../components/Form/TextArea/TextArea';
+import MainButton from '../components/MainButton/MainButton';
+
+import { Formik, Form } from 'formik';
+
+import connexionStyle from '../styles/Connexion.module.css';
 
 const login = () => {
-   const [state, setState] = useState({
+   const initialValues = {
       email: '',
       password: '',
       remember_me: false,
-   });
+   };
 
    const [error, setError] = useState('');
 
-   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      useHandleChange({ e, setState });
+   const onSubmit = (values) => {
+      console.log('Form data', values);
    };
 
    const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -62,12 +66,17 @@ const login = () => {
    return (
       <>
          <FormTitle title='Je me connecte' />
-         <form onSubmit={handleLoginSubmit}>
-            <Input name='email' placeholder='Mon email' onChange={handleLoginChange} />
-            <Input type='password' name='password' placeholder='Mon mot de passe' onChange={handleLoginChange} />
-            <Input type='checkbox' name='remember_me' onChange={handleLoginChange} label='Remember me' />
-            <Button>Je me connecte</Button>
-         </form>
+         <Formik initialValues={initialValues} onSubmit={onSubmit}>
+            {(formik) => {
+               return (
+                  <Form>
+                     <FormikControl control='input' type='email' placeholder='Mon email' name='email' />
+                     <FormikControl control='input' type='password' placeholder='Mon mot de passe' name='password' />
+                     <MainButton>Je me connecte</MainButton>
+                  </Form>
+               );
+            }}
+         </Formik>
          <p className={connexionStyle.message}>
             Je n'ai pas de compte,{' '}
             <Link href='/register'>
@@ -75,7 +84,6 @@ const login = () => {
             </Link>
             .
          </p>
-         {JSON.stringify(state)}
       </>
    );
 };
