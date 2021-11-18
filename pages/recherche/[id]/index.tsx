@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import Button from '../../../components/Button/Button';
+import MainButton from '../../../components/MainButton/MainButton';
 import Favorite from '../../../components/Favorite/Favorite';
 import adStyle from '../../../styles/Ad.module.css';
 import marteau from '../../../public/userImages/marteau.jpg';
@@ -17,7 +17,7 @@ const ad = () => {
             <div className={adStyle.favoriteContainer}>
                <Favorite size={30} />
             </div>
-            <Button buttonText='Je contacte le vendeur' />
+            <MainButton buttonText='Je contacte le vendeur' />
          </div>
          <hr />
          <h2 className={adStyle.sectionTitle}>Description</h2>
