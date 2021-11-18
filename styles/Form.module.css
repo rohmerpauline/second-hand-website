@@ -50,6 +50,7 @@
 
 .label {
    font-weight: 300;
+   margin-right: 0.5em;
 }
 
 .message {
@@ -63,6 +64,37 @@
 
 .registerlink:hover {
    text-decoration: underline;
+}
+
+.error {
+   color: red;
+}
+
+/* RADIO BUTTON */
+
+.radioContainer {
+   display: inline-block;
+}
+
+.radioInput {
+   display: none;
+}
+
+.radioContainer > .radioLabel,
+.labelChecked {
+   padding: 0.4em 1em;
+   box-sizing: border-box;
+   border-radius: 5px;
+   cursor: pointer;
+   margin-right: 0.8em;
+}
+
+.radioContainer > .radioLabel {
+   background-color: rgba(185, 185, 185, 0.3);
+}
+.radioContainer > .labelChecked {
+   background-color: var(--red);
+   color: white;
 }
 
 /******************
