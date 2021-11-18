@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
-import ReactTooltip from 'react-tooltip';
-import Form from '../components/Form/Form';
-import FormTitle from '../components/FormTitle/FormTitle';
-import AdButton from '../components/AdButton/AdButton';
-import Button from '../components/Button/Button';
-import Input from '../components/Input/Input';
-import SelectInput from '../components/SelectInput/SelectInput';
+
+import FormTitle from '../components/Form/FormTitle/FormTitle';
+import CreateAdButton from '../components/CreateAdButton/CreateAdButton';
+import MainButton from '../components/MainButton/MainButton';
+import FormikControl from '../components/Form/FormikControl/FormikControl';
+
 import CategoriesItems from '../Configs/CategoriesItems';
 import ObjectConditionItems from '../Configs/ObjectConditionItems';
-import { useHandleChange, useHandleSelect } from '../hooks';
-/* import { OFFER_OBJECT, ASK_OBJECT, ASK_SERVICE, OFFER_SERVICE } from '../Configs/CreateProductFormContent'; */
 
+import { Formik, Form } from 'formik';
 import { FaHandsHelping, FaHandHolding } from 'react-icons/fa';
 
 const buttonContent = {
@@ -20,26 +18,29 @@ const buttonContent = {
    subButtonService: ["J'ai besoin d'un service", 'Je propose un service'],
 };
 
+const radioOptionsObject = [
+   { key: buttonContent.subButtonObject[0], value: '0' },
+   { key: buttonContent.subButtonObject[1], value: '1' },
+];
+
+const radioOptionsService = [
+   { key: buttonContent.subButtonService[0], value: '2' },
+   { key: buttonContent.subButtonService[1], value: '3' },
+];
+
 const creerannonce = () => {
    const [buttonSelected, setButtonSelected] = useState('Objet');
    const [subButtons, setSubButtons] = useState([]);
    const [subButtonSelected, setSubButtonSelected] = useState('');
 
-   const [state, setState] = useState({
+   const initialValues = {
       title: '',
       description: '',
       location: '',
       categories: '',
       objectcondition: '',
       typeOfAdd: '',
-   });
-
-   useEffect(() => {
-      setState((prevState) => ({
-         ...prevState,
-         typeOfAdd: subButtonSelected,
-      }));
-   }, [subButtonSelected]);
+   };
 
    useEffect(() => {
       if (buttonSelected === buttonContent.btnObject) {
@@ -51,97 +52,77 @@ const creerannonce = () => {
       }
    }, [buttonSelected]);
 
-   const handleProductChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      useHandleChange({ e, setState });
+   const onSubmit = (values) => {
+      console.log('Form data', values);
    };
-
-   const handleSelect = (e: any): void => {
-      useHandleSelect({ e, setState });
-   };
-
-   const handleProductSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-      e.preventDefault();
-   };
-
-   const selectCategory = CategoriesItems.map((category) => ({
-      value: category.value,
-      label: category.label,
-      name: category.name,
-   }));
-
-   const selectObjectCondition = ObjectConditionItems.map((objectcondition) => ({
-      value: objectcondition.value,
-      label: objectcondition.label,
-      name: objectcondition.name,
-   }));
 
    return (
       <>
-         <AdButton
-            buttonSelected={buttonSelected}
-            onClickButton={setButtonSelected}
-            buttonContent={'Objet'}
-            tooltip={true}
-         >
+         <CreateAdButton buttonSelected={buttonSelected} onClickButton={setButtonSelected} buttonContent='Objet'>
             <FaHandHolding size={20} />
-         </AdButton>
-         <AdButton
-            buttonSelected={buttonSelected}
-            onClickButton={setButtonSelected}
-            buttonContent={'Service'}
-            tooltip={true}
-         >
+         </CreateAdButton>
+         <CreateAdButton buttonSelected={buttonSelected} onClickButton={setButtonSelected} buttonContent='Service'>
             <FaHandsHelping size={20} />
-         </AdButton>
+         </CreateAdButton>
          <FormTitle title='Je créer une annonce' />
-         <AdButton
-            buttonSelected={subButtonSelected}
-            onClickButton={setSubButtonSelected}
-            buttonContent={subButtons[0]}
-         >
-            {subButtons[0]}
-         </AdButton>
-         <AdButton
-            buttonSelected={subButtonSelected}
-            onClickButton={setSubButtonSelected}
-            buttonContent={subButtons[1]}
-         >
-            {subButtons[1]}
-         </AdButton>
-         <form onSubmit={handleProductSubmit}>
-            <Input
-               name='title'
-               placeholder='plante, meuble-tv, lampe...'
-               label='Titre de mon annonce :'
-               onChange={handleProductChange}
-            />
-            <Input
-               name='description'
-               type='textarea'
-               placeholder='En super bon état. À venir chercher entre 10h et 12h.'
-               label='Descriptif de mon annonce :'
-               onChange={handleProductChange}
-            />
-            <Input
-               name='location'
-               placeholder='Bruxelles, Namur, Liège...'
-               label='Lieu de mon annonce :'
-               onChange={handleProductChange}
-            />
-            {(subButtonSelected === 'Je donne' || subButtonSelected === 'Je demande') && (
-               <SelectInput name='categories' options={selectCategory} onChange={handleSelect} label='Catégories' />
-            )}
-            {subButtonSelected === 'Je donne' && (
-               <SelectInput
-                  name='objectcondition'
-                  options={selectObjectCondition}
-                  onChange={handleSelect}
-                  label='Catégories'
-               />
-            )}
-            <Button>Je créer mon annonce</Button>
-            {/* {JSON.stringify(state)} */}
-         </form>
+         <Formik initialValues={initialValues} onSubmit={onSubmit}>
+            {(formik) => {
+               return (
+                  <Form>
+                     <FormikControl
+                        control='radio'
+                        name='typeOfAdd'
+                        options={buttonSelected === buttonContent.btnObject ? radioOptionsObject : radioOptionsService}
+                        onClick={setSubButtonSelected}
+                        subButton={subButtonSelected}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='text'
+                        placeholder='plante, meuble-tv, lampe...'
+                        name='title'
+                        label='Titre de mon annonce :'
+                     />
+                     <FormikControl
+                        control='textarea'
+                        type='text'
+                        placeholder='En super bon état. À venir chercher entre 10h et 12h.'
+                        name='description'
+                        label='Descriptif de mon annonce :'
+                        rows={8}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='text'
+                        placeholder='Bruxelles, Namur, Liège...'
+                        name='location'
+                        label='Lieu de mon annonce :'
+                     />
+                     {(subButtonSelected === 'Je donne' || subButtonSelected === 'Je demande') && (
+                        <FormikControl
+                           control='select'
+                           type='text'
+                           options={CategoriesItems}
+                           name='categories'
+                           label='Catégories :'
+                        />
+                     )}
+                     {subButtonSelected === 'Je donne' && (
+                        <FormikControl
+                           control='select'
+                           type='text'
+                           options={ObjectConditionItems}
+                           name='objectcondition'
+                           label="État de l'objet :"
+                        />
+                     )}
+                     <MainButton type='submit' style='main'>
+                        Je m'enregistre
+                     </MainButton>
+                  </Form>
+               );
+            }}
+         </Formik>
       </>
    );
 };
