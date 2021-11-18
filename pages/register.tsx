@@ -1,35 +1,37 @@
 import { useState } from 'react';
-import Link from 'next/link';
-import FormTitle from '../components/FormTitle/FormTitle';
-import Input from '../components/Input/Input';
-/* import Label from '../components/Label/Label'; */
-import Button from '../components/Button/Button';
-import { useHandleChange } from '../hooks';
-import connexionStyle from '../styles/Connexion.module.css';
-import axios from 'axios';
 import router from 'next/router';
+import axios from 'axios';
+import Link from 'next/link';
+
+import FormTitle from '../components/Form/FormTitle/FormTitle';
+import MainButton from '../components/MainButton/MainButton';
+import FormikControl from '../components/Form/FormikControl/FormikControl';
+
+import { Formik, Form } from 'formik';
 
 import UserSchema from '../Validators/UserSchema';
 
+import connexionStyle from '../styles/Connexion.module.css';
+
 const register = () => {
-   const [state, setState] = useState({
+   const initialValues = {
       firstname: '',
       lastname: '',
       email: '',
       password: '',
       password_confirmation: '',
-   });
+   };
 
    const [error, setError] = useState('');
 
-   const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      useHandleChange({ e, setState });
+   const onSubmit = (values) => {
+      console.log('Form data', values);
    };
 
    const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
       e.preventDefault();
 
-      const payload = {
+      /* const payload = {
          lastname: state.lastname,
          firstname: state.firstname,
          email: state.email,
@@ -46,25 +48,31 @@ const register = () => {
          .catch((error) => {
             console.log(error.response.data);
             setError(error);
-         });
+         }); */
    };
 
    return (
       <div>
          <FormTitle title={"Je m'enregistre"} subtitle='Pour créer un compte, remplissez les champs suivants :' />
-         <form onSubmit={handleRegisterSubmit}>
-            <Input name='firstname' placeholder='Mon prénom' onChange={handleRegisterChange} />
-            <Input name='lastname' placeholder='Mon nom' onChange={handleRegisterChange} />
-            <Input type='email' name='email' placeholder='Mon email' onChange={handleRegisterChange} />
-            <Input type='password' name='password' placeholder='Mon mot de passe' onChange={handleRegisterChange} />
-            <Input
-               type='password'
-               name='passwordConformation'
-               placeholder='Je confirme mon mot de passe'
-               onChange={handleRegisterChange}
-            />
-            <Button>Je m'enregistre</Button>
-         </form>
+         <Formik initialValues={initialValues} onSubmit={onSubmit}>
+            {(formik) => {
+               return (
+                  <Form>
+                     <FormikControl control='input' type='text' placeholder='Mon prénom' name='firstname' />
+                     <FormikControl control='input' type='text' placeholder='Mon nom' name='lastname' />
+                     <FormikControl control='input' type='email' placeholder='Mon email' name='email' />
+                     <FormikControl control='input' type='password' placeholder='Mon mot de passe' name='password' />
+                     <FormikControl
+                        control='input'
+                        type='password'
+                        placeholder='Je confirme mon mot de passe'
+                        name='password_confirmation'
+                     />
+                     <MainButton>Je m'enregistre</MainButton>
+                  </Form>
+               );
+            }}
+         </Formik>
          <p className={connexionStyle.message}>
             J'ai déjà un compte,
             <Link href='/login'>
@@ -72,7 +80,6 @@ const register = () => {
             </Link>
             .
          </p>
-         {JSON.stringify(state)}
       </div>
    );
 };
