@@ -27,8 +27,6 @@ const FormikControl = (props: FormikControlProps) => {
       default:
          return null;
    }
-
-   return <div></div>;
 };
 
 export default FormikControl;
