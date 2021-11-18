@@ -1,15 +1,16 @@
 const CategoriesItems = [
-   { value: 'furniture', label: 'Meubles', name: 'categories' },
-   { value: 'clothes', label: 'Vêtements', name: 'categories' },
-   { value: 'leisureSport', label: 'Loisirs & Sport', name: 'categories' },
-   { value: 'accesoriesJewlery', label: 'Accessoires & Bijoux', name: 'categories' },
-   { value: 'decoration', label: 'Décoration & Art', name: 'categories' },
-   { value: 'homeappliance', label: 'Électroménager', name: 'categories' },
-   { value: 'kitchenHouse', label: 'Cuisine & Maison', name: 'categories' },
-   { value: 'gamesToys', label: 'Jeux & jouets', name: 'categories' },
-   { value: 'electronic', label: 'Électronique', name: 'categories' },
-   { value: 'booksMoviesMusic', label: 'Livres, films & musiques', name: 'categories' },
-   { value: 'shoes', label: 'Chaussures', name: 'categories' },
+   { value: '', key: 'Sélectionner une option...' },
+   { value: 'furniture', key: 'Meubles', name: 'categories' },
+   { value: 'clothes', key: 'Vêtements', name: 'categories' },
+   { value: 'leisureSport', key: 'Loisirs & Sport', name: 'categories' },
+   { value: 'accesoriesJewlery', key: 'Accessoires & Bijoux', name: 'categories' },
+   { value: 'decoration', key: 'Décoration & Art', name: 'categories' },
+   { value: 'homeappliance', key: 'Électroménager', name: 'categories' },
+   { value: 'kitchenHouse', key: 'Cuisine & Maison', name: 'categories' },
+   { value: 'gamesToys', key: 'Jeux & jouets', name: 'categories' },
+   { value: 'electronic', key: 'Électronique', name: 'categories' },
+   { value: 'booksMoviesMusic', key: 'Livres, films & musiques', name: 'categories' },
+   { value: 'shoes', key: 'Chaussures', name: 'categories' },
 ];
 
 export default CategoriesItems;
