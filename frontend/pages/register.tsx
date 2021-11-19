@@ -26,17 +26,20 @@ const register = () => {
 
    const onSubmit = (values: {}) => {
       console.log('Form data', values);
-      console.log(values);
       axios({
          method: 'POST',
-         url: '/api/account/register',
+         url: '/user/register',
          data: values,
       })
          .then(function (response) {
-            //
+            if (response.data === 'User created') {
+               router.push('/');
+            } else if (response.data.error) {
+               setError(response.data.error);
+            }
          })
          .catch((error) => {
-            console.log(error.response.data);
+            return;
          });
    };
 
@@ -47,15 +50,40 @@ const register = () => {
             {(formik) => {
                return (
                   <Form>
-                     <FormikControl control='input' type='text' placeholder='Mon prénom' name='firstname' />
-                     <FormikControl control='input' type='text' placeholder='Mon nom' name='lastname' />
-                     <FormikControl control='input' type='email' placeholder='Mon email' name='email' />
-                     <FormikControl control='input' type='password' placeholder='Mon mot de passe' name='password' />
+                     <FormikControl
+                        control='input'
+                        type='text'
+                        placeholder='Mon prénom'
+                        name='firstname'
+                        errorMessage={error.firstname}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='text'
+                        placeholder='Mon nom'
+                        name='lastname'
+                        errorMessage={error.lastname}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='email'
+                        placeholder='Mon email'
+                        name='email'
+                        errorMessage={error.email}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='password'
+                        placeholder='Mon mot de passe'
+                        name='password'
+                        errorMessage={error.password}
+                     />
                      <FormikControl
                         control='input'
                         type='password'
                         placeholder='Je confirme mon mot de passe'
                         name='passwordConfirmation'
+                        errorMessage={error.passwordConfirmation}
                      />
                      <MainButton>Je m'enregistre</MainButton>
                   </Form>
