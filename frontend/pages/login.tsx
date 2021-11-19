@@ -18,7 +18,7 @@ const login = () => {
    const initialValues = {
       email: '',
       password: '',
-      remember_me: false,
+      rememberMe: [],
    };
 
    const [error, setError] = useState('');
@@ -63,6 +63,8 @@ const login = () => {
          }); */
    };
 
+   const checkBoxOption = [{ key: 'Remember me', value: 'true' }];
+
    return (
       <>
          <FormTitle title='Je me connecte' />
@@ -72,6 +74,7 @@ const login = () => {
                   <Form>
                      <FormikControl control='input' type='email' placeholder='Mon email' name='email' />
                      <FormikControl control='input' type='password' placeholder='Mon mot de passe' name='password' />
+                     <FormikControl control='checkbox' name='rememberMe' options={checkBoxOption} />
                      <MainButton>Je me connecte</MainButton>
                   </Form>
                );
