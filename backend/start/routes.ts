@@ -19,7 +19,28 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
+//import { HttpContextContract }  from '@ioc:Adonis/Core/HttpContext'
 
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+
+/* Route.group(() => {
+  Route.post('register', 'UsersController.register')
+  Route.post('login', 'UsersController.login')
+}).prefix('api') */
+
+Route.post('register', 'UsersController.register').prefix('user')
+Route.post('login', 'UsersController.login').prefix('user')
+
+Route.get('health', async ({ response }) => {
+  const report = await HealthCheck.getReport()
+
+  return report.healthy
+    ? response.ok(report)
+    : response.badRequest(report)
+})
+
+
+
