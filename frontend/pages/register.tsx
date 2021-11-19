@@ -9,7 +9,7 @@ import AccountMessage from '../components/AccountMessage/AccountMessage';
 
 import { Formik, Form } from 'formik';
 
-import UserSchema from '../Validators/UserSchema';
+import RegisterSchema from '../Validators/RegisterSchema';
 
 import connexionStyle from '../styles/Connexion.module.css';
 
@@ -46,7 +46,7 @@ const register = () => {
    return (
       <div>
          <FormTitle title={"Je m'enregistre"} subtitle='Pour créer un compte, remplissez les champs suivants :' />
-         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={UserSchema}>
+         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={RegisterSchema}>
             {(formik) => {
                return (
                   <Form>

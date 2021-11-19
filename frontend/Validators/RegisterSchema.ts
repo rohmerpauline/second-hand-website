@@ -3,7 +3,7 @@ import * as Yup from "yup";
 const requiredMessage = 'Ce champ est requis.'
 const inputLengthMessage = 'Ce champ doit contenir au moins 2 charactères.'
 
-const UserSchema = Yup.object().shape({
+const RegisterSchema = Yup.object().shape({
    lastname: Yup.string().required(requiredMessage).min(2, inputLengthMessage),
    firstname: Yup.string().required(requiredMessage).min(2, inputLengthMessage),
    email: Yup.string().email('Ce champ doit être un email valide.').required(requiredMessage),
@@ -11,4 +11,4 @@ const UserSchema = Yup.object().shape({
    passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Les mots de passe ne correspondent pas.').required(requiredMessage)
 })
 
-export default UserSchema;
+export default RegisterSchema;

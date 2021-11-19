@@ -13,6 +13,8 @@ import AccountMessage from '../components/AccountMessage/AccountMessage';
 
 import { Formik, Form } from 'formik';
 
+import LoginSchema from '../Validators/LoginSchema';
+
 import connexionStyle from '../styles/Connexion.module.css';
 
 const login = () => {
@@ -69,7 +71,7 @@ const login = () => {
    return (
       <>
          <FormTitle title='Je me connecte' />
-         <Formik initialValues={initialValues} onSubmit={onSubmit}>
+         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={LoginSchema}>
             {(formik) => {
                return (
                   <Form>
