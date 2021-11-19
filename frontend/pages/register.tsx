@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import router from 'next/router';
 import axios from 'axios';
-import Link from 'next/link';
 
 import FormTitle from '../components/Form/FormTitle/FormTitle';
 import MainButton from '../components/MainButton/MainButton';
 import FormikControl from '../components/Form/FormikControl/FormikControl';
+import AccountMessage from '../components/AccountMessage/AccountMessage';
 
 import { Formik, Form } from 'formik';
 
@@ -90,13 +90,7 @@ const register = () => {
                );
             }}
          </Formik>
-         <p className={connexionStyle.message}>
-            J'ai déjà un compte,
-            <Link href='/login'>
-               <span className={connexionStyle.registerlink}> se connecter</span>
-            </Link>
-            .
-         </p>
+         <AccountMessage href='/login' text="J'ai déjà un compte" textLink='se connecter' />
       </div>
    );
 };

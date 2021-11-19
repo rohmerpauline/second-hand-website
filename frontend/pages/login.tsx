@@ -9,6 +9,7 @@ import FormikControl from '../components/Form/FormikControl/FormikControl';
 import Input from '../components/Form/Input/Input';
 import TextArea from '../components/Form/TextArea/TextArea';
 import MainButton from '../components/MainButton/MainButton';
+import AccountMessage from '../components/AccountMessage/AccountMessage';
 
 import { Formik, Form } from 'formik';
 
@@ -80,13 +81,7 @@ const login = () => {
                );
             }}
          </Formik>
-         <p className={connexionStyle.message}>
-            Je n'ai pas de compte,{' '}
-            <Link href='/register'>
-               <span className={connexionStyle.registerlink}>créer un compte</span>
-            </Link>
-            .
-         </p>
+         <AccountMessage href='/register' text="Je n'ai pas de compte" textLink='créer un compte' />
       </>
    );
 };
