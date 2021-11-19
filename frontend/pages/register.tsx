@@ -23,6 +23,7 @@ const register = () => {
    };
 
    const [error, setError] = useState('');
+   const [visibilityField, setVisibilityField] = useState(false);
 
    const onSubmit = (values: {}) => {
       console.log('Form data', values);
@@ -73,17 +74,23 @@ const register = () => {
                      />
                      <FormikControl
                         control='input'
-                        type='password'
+                        type={visibilityField === true ? 'text' : 'password'}
                         placeholder='Mon mot de passe'
                         name='password'
                         errorMessage={error.password}
+                        eye={true}
+                        visibilityField={visibilityField}
+                        setVisibilityField={setVisibilityField}
                      />
                      <FormikControl
                         control='input'
-                        type='password'
+                        type={visibilityField === true ? 'text' : 'password'}
                         placeholder='Je confirme mon mot de passe'
                         name='passwordConfirmation'
                         errorMessage={error.passwordConfirmation}
+                        eye={true}
+                        visibilityField={visibilityField}
+                        setVisibilityField={setVisibilityField}
                      />
                      <MainButton>Je m'enregistre</MainButton>
                   </Form>

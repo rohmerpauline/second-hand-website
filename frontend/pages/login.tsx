@@ -26,6 +26,8 @@ const login = () => {
 
    const [error, setError] = useState('');
 
+   const [visibilityField, setVisibilityField] = useState(false);
+
    const onSubmit = (values) => {
       console.log('Form data', values);
    };
@@ -76,7 +78,15 @@ const login = () => {
                return (
                   <Form>
                      <FormikControl control='input' type='email' placeholder='Mon email' name='email' />
-                     <FormikControl control='input' type='password' placeholder='Mon mot de passe' name='password' />
+                     <FormikControl
+                        control='input'
+                        type={visibilityField === true ? 'text' : 'password'}
+                        placeholder='Mon mot de passe'
+                        name='password'
+                        eye={true}
+                        visibilityField={visibilityField}
+                        setVisibilityField={setVisibilityField}
+                     />
                      <FormikControl control='checkbox' name='rememberMe' options={checkBoxOption} />
                      <MainButton>Je me connecte</MainButton>
                   </Form>
