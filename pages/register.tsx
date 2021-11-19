@@ -19,42 +19,31 @@ const register = () => {
       lastname: '',
       email: '',
       password: '',
-      password_confirmation: '',
+      passwordConfirmation: '',
    };
 
    const [error, setError] = useState('');
 
-   const onSubmit = (values) => {
+   const onSubmit = (values: {}) => {
       console.log('Form data', values);
-   };
-
-   const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-      e.preventDefault();
-
-      /* const payload = {
-         lastname: state.lastname,
-         firstname: state.firstname,
-         email: state.email,
-         password: state.password,
-         passwordConfirmation: state.password_confirmation,
-      };
-
+      console.log(values);
       axios({
-         method: 'post',
+         method: 'POST',
          url: '/api/account/register',
-         data: payload,
+         data: values,
       })
-         .then(function (response) {})
+         .then(function (response) {
+            //
+         })
          .catch((error) => {
             console.log(error.response.data);
-            setError(error);
-         }); */
+         });
    };
 
    return (
       <div>
          <FormTitle title={"Je m'enregistre"} subtitle='Pour créer un compte, remplissez les champs suivants :' />
-         <Formik initialValues={initialValues} onSubmit={onSubmit}>
+         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={UserSchema}>
             {(formik) => {
                return (
                   <Form>
@@ -66,7 +55,7 @@ const register = () => {
                         control='input'
                         type='password'
                         placeholder='Je confirme mon mot de passe'
-                        name='password_confirmation'
+                        name='passwordConfirmation'
                      />
                      <MainButton>Je m'enregistre</MainButton>
                   </Form>
