@@ -1,4 +1,4 @@
-const CategoriesItems = [
+export const CATEGORIES_ITEMS = [
    { value: '', key: 'Sélectionner une option...' },
    { value: 'furniture', key: 'Meubles', name: 'categories' },
    { value: 'clothes', key: 'Vêtements', name: 'categories' },
@@ -12,5 +12,3 @@ const CategoriesItems = [
    { value: 'booksMoviesMusic', key: 'Livres, films & musiques', name: 'categories' },
    { value: 'shoes', key: 'Chaussures', name: 'categories' },
 ];
-
-export default CategoriesItems;
