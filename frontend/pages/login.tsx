@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import router from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
@@ -10,6 +10,8 @@ import Input from '../components/Form/Input/Input';
 import TextArea from '../components/Form/TextArea/TextArea';
 import MainButton from '../components/MainButton/MainButton';
 import AccountMessage from '../components/AccountMessage/AccountMessage';
+
+import { AuthContext } from '../../frontend/Context/Auth/AuthContext';
 
 import { Formik, Form } from 'formik';
 
@@ -27,45 +29,28 @@ const login = () => {
    const [error, setError] = useState('');
 
    const [visibilityField, setVisibilityField] = useState(false);
+   const [isAuth, setIsAuth] = useContext(AuthContext);
 
    const onSubmit = (values) => {
       console.log('Form data', values);
-   };
-
-   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-      e.preventDefault();
-
-      const payload = {
-         email: state.email,
-         password: state.password,
-         rememberMe: state.remember_me,
-      };
 
       axios({
          method: 'post',
-         url: '/api/account/login',
-         data: payload,
+         url: '/user/login',
+         data: values,
       })
          .then(function (response) {
             console.log(response.data);
+            const { token } = response.data;
+            setIsAuth({
+               isAuthenticated: true,
+               token: token,
+            });
          })
          .catch((error) => {
             setError(error);
             console.log(error);
          });
-
-      /*  axios({
-         method: 'post',
-         url: '/api/login',
-         data: payload,
-      })
-         .then(function (response) {
-            console.log(response.data);
-         })
-         .catch((error) => {
-            setError(error);
-            console.log(error);
-         }); */
    };
 
    const checkBoxOption = [{ key: 'Remember me', value: 'true' }];
