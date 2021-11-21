@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import executeQuery from '../../../lib/db';
-import * as yup from 'yup';
-import moment from 'moment';
 
 import RegisterSchema from '../../../Validators/RegisterSchema'
 

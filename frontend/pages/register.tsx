@@ -11,8 +11,6 @@ import { Formik, Form } from 'formik';
 
 import RegisterSchema from '../Validators/RegisterSchema';
 
-import connexionStyle from '../styles/Connexion.module.css';
-
 const register = () => {
    const initialValues = {
       firstname: '',
@@ -22,7 +20,7 @@ const register = () => {
       passwordConfirmation: '',
    };
 
-   const [error, setError] = useState('');
+   const [error, setError] = useState(null);
    const [visibilityField, setVisibilityField] = useState(false);
 
    const onSubmit = (values: {}) => {
@@ -56,28 +54,28 @@ const register = () => {
                         type='text'
                         placeholder='Mon prénom'
                         name='firstname'
-                        errorMessage={error.firstname}
+                        errorMessage={error ? error.firstname : null}
                      />
                      <FormikControl
                         control='input'
                         type='text'
                         placeholder='Mon nom'
                         name='lastname'
-                        errorMessage={error.lastname}
+                        errorMessage={error ? error.lastname : null}
                      />
                      <FormikControl
                         control='input'
                         type='email'
                         placeholder='Mon email'
                         name='email'
-                        errorMessage={error.email}
+                        errorMessage={error ? error.email : null}
                      />
                      <FormikControl
                         control='input'
                         type={visibilityField === true ? 'text' : 'password'}
                         placeholder='Mon mot de passe'
                         name='password'
-                        errorMessage={error.password}
+                        errorMessage={error ? error.password : null}
                         eye={true}
                         visibilityField={visibilityField}
                         setVisibilityField={setVisibilityField}
@@ -87,7 +85,7 @@ const register = () => {
                         type={visibilityField === true ? 'text' : 'password'}
                         placeholder='Je confirme mon mot de passe'
                         name='passwordConfirmation'
-                        errorMessage={error.passwordConfirmation}
+                        errorMessage={error ? error.passwordConfirmation : null}
                         eye={true}
                         visibilityField={visibilityField}
                         setVisibilityField={setVisibilityField}
