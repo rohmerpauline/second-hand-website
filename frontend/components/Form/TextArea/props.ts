@@ -1,6 +1,6 @@
 export default interface TextAreaProps {
-   label: string;
+   label?: string;
    name: string;
-   placeholder: string;
-   rows: number;
+   placeholder?: string;
+   rows?: number;
  }

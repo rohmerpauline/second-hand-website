@@ -1,8 +1,8 @@
 export default interface CheckBoxProps {
-   label: string;
+   label?: string;
    name: string;
-   options: {
+   options?: {
       value: string;
       key: string;
-   };
+   }[];
 }
