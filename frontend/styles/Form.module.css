@@ -19,21 +19,32 @@
 }
 
 .inputcontainer {
-   margin: 1em 0 0 0;
+   margin: 0.5em 0 0 0;
 }
 
 .input,
 .textarea {
+   border: 1px solid var(--lightgray);
+}
+
+.input,
+.textarea,
+.inputError {
    box-sizing: border-box;
    width: 100%;
    border-radius: 5px;
-   border: 1px solid var(--lightgray);
+
    margin: 0.4em auto;
 }
 
-.input {
+.input,
+.inputError {
    height: 2.5em;
    padding: 0em 0.8em;
+}
+
+.inputError {
+   border: 1px solid var(--red);
 }
 
 .textarea {
@@ -70,6 +81,18 @@
    color: red;
    font-size: 0.7em;
    font-style: italic;
+}
+
+.passwordToggle {
+   display: flex;
+   align-items: center;
+   position: relative;
+}
+
+.eyeToggle {
+   position: absolute;
+   right: 1em;
+   cursor: pointer;
 }
 
 /* RADIO BUTTON */

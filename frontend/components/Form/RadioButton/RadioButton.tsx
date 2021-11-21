@@ -20,7 +20,7 @@ const RadioButton = (props: RadioButtonProps) => {
                         onClick={onClick ? () => onClick(option.key) : null}
                      >
                         <label
-                           htmlFor={option.id}
+                           htmlFor={option.key}
                            className={
                               option.value === field.value || subButton === option.key
                                  ? formStyle.labelChecked
@@ -29,7 +29,7 @@ const RadioButton = (props: RadioButtonProps) => {
                         >
                            <input
                               type='radio'
-                              id={option.id}
+                              id={option.key}
                               {...field}
                               value={option.value}
                               checked={field.value === option.value}

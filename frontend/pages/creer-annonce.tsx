@@ -5,8 +5,7 @@ import CreateAdButton from '../components/CreateAdButton/CreateAdButton';
 import MainButton from '../components/MainButton/MainButton';
 import FormikControl from '../components/Form/FormikControl/FormikControl';
 
-import CategoriesItems from '../Configs/CategoriesItems';
-import ObjectConditionItems from '../Configs/ObjectConditionItems';
+import { CATEGORIES_ITEMS, OBJECT_CONDITION_ITEMS } from '../constants';
 
 import { Formik, Form } from 'formik';
 import { FaHandsHelping, FaHandHolding } from 'react-icons/fa';
@@ -102,7 +101,7 @@ const creerannonce = () => {
                         <FormikControl
                            control='select'
                            type='text'
-                           options={CategoriesItems}
+                           options={CATEGORIES_ITEMS}
                            name='categories'
                            label='Catégories :'
                         />
@@ -111,7 +110,7 @@ const creerannonce = () => {
                         <FormikControl
                            control='select'
                            type='text'
-                           options={ObjectConditionItems}
+                           options={OBJECT_CONDITION_ITEMS}
                            name='objectcondition'
                            label="État de l'objet :"
                         />

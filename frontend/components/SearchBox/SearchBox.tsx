@@ -7,8 +7,7 @@ import { BsPlusCircle } from 'react-icons/bs';
 import { FiMinusCircle } from 'react-icons/fi';
 import { Formik, Form } from 'formik';
 
-import CategoriesItems from '../../Configs/CategoriesItems';
-import ObjectConditionItems from '../../Configs/ObjectConditionItems';
+import { CATEGORIES_ITEMS, OBJECT_CONDITION_ITEMS } from '../../constants';
 
 import searchStyle from '../../styles/SearchBox.module.css';
 
@@ -53,7 +52,12 @@ const SearchBox = () => {
                      {filter && (
                         <>
                            <div className={searchStyle.additionalSearch}>
-                              <FormikControl control='select' type='text' options={CategoriesItems} name='categories' />
+                              <FormikControl
+                                 control='select'
+                                 type='text'
+                                 options={CATEGORIES_ITEMS}
+                                 name='categories'
+                              />
                               <FormikControl
                                  control='input'
                                  type='text'
@@ -63,7 +67,7 @@ const SearchBox = () => {
                               <FormikControl
                                  control='select'
                                  type='text'
-                                 options={ObjectConditionItems}
+                                 options={OBJECT_CONDITION_ITEMS}
                                  name='objectcondition'
                               />
                            </div>

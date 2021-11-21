@@ -1,9 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import executeQuery from '../../../lib/db';
-import * as yup from 'yup';
-import moment from 'moment';
 
-import UserSchema from '../../../Validators/UserSchema'
+import RegisterSchema from '../../../Validators/RegisterSchema'
 
 const registerHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -16,7 +14,7 @@ const registerHandler = async (req: NextApiRequest, res: NextApiResponse) => {
    if(req.method === 'POST'){
       try {
          
-         await UserSchema.validate(req.body, {abortEarly: false})
+         await RegisterSchema.validate(req.body, {abortEarly: false})
          const result =  await executeQuery({ 
             query: 'INSERT INTO users (id, firstname, lastname, password, email) VALUES(?, ?, ?, ?, ?)',
             values: [1, firstname, lastname, password, email]

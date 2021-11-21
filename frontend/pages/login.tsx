@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import router from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
 
 import FormTitle from '../components/Form/FormTitle/FormTitle';
-import Label from '../components/Form/Label/Label';
 import FormikControl from '../components/Form/FormikControl/FormikControl';
-import Input from '../components/Form/Input/Input';
-import TextArea from '../components/Form/TextArea/TextArea';
 import MainButton from '../components/MainButton/MainButton';
+import AccountMessage from '../components/AccountMessage/AccountMessage';
+
+import { AuthContext } from '../../frontend/Context/Auth/AuthContext';
 
 import { Formik, Form } from 'formik';
 
-import connexionStyle from '../styles/Connexion.module.css';
+import LoginSchema from '../Validators/LoginSchema';
 
 const login = () => {
    const initialValues = {
@@ -23,44 +23,29 @@ const login = () => {
 
    const [error, setError] = useState('');
 
+   const [visibilityField, setVisibilityField] = useState(false);
+   const [isAuth, setIsAuth] = useContext(AuthContext);
+
    const onSubmit = (values) => {
       console.log('Form data', values);
-   };
-
-   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-      e.preventDefault();
-
-      const payload = {
-         email: state.email,
-         password: state.password,
-         rememberMe: state.remember_me,
-      };
 
       axios({
          method: 'post',
-         url: '/api/account/login',
-         data: payload,
+         url: '/user/login',
+         data: values,
       })
          .then(function (response) {
-            console.log(response.data);
+            const { token } = response.data;
+            setIsAuth({
+               isAuthenticated: true,
+               token: token,
+            });
+            router.push('/');
          })
          .catch((error) => {
             setError(error);
             console.log(error);
          });
-
-      /*  axios({
-         method: 'post',
-         url: '/api/login',
-         data: payload,
-      })
-         .then(function (response) {
-            console.log(response.data);
-         })
-         .catch((error) => {
-            setError(error);
-            console.log(error);
-         }); */
    };
 
    const checkBoxOption = [{ key: 'Remember me', value: 'true' }];
@@ -68,25 +53,27 @@ const login = () => {
    return (
       <>
          <FormTitle title='Je me connecte' />
-         <Formik initialValues={initialValues} onSubmit={onSubmit}>
+         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={LoginSchema}>
             {(formik) => {
                return (
                   <Form>
                      <FormikControl control='input' type='email' placeholder='Mon email' name='email' />
-                     <FormikControl control='input' type='password' placeholder='Mon mot de passe' name='password' />
+                     <FormikControl
+                        control='input'
+                        type={visibilityField === true ? 'text' : 'password'}
+                        placeholder='Mon mot de passe'
+                        name='password'
+                        eye={true}
+                        visibilityField={visibilityField}
+                        setVisibilityField={setVisibilityField}
+                     />
                      <FormikControl control='checkbox' name='rememberMe' options={checkBoxOption} />
                      <MainButton>Je me connecte</MainButton>
                   </Form>
                );
             }}
          </Formik>
-         <p className={connexionStyle.message}>
-            Je n'ai pas de compte,{' '}
-            <Link href='/register'>
-               <span className={connexionStyle.registerlink}>créer un compte</span>
-            </Link>
-            .
-         </p>
+         <AccountMessage href='/register' text="Je n'ai pas de compte" textLink='créer un compte' />
       </>
    );
 };
