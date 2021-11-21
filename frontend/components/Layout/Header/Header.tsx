@@ -45,7 +45,13 @@ const Header = () => {
                   </div>
                </Link>
             </div>
-            {isAuth.isAuthenticated && <button onClick={() => logOut()}>Se déconnecter</button>}
+            {isAuth.isAuthenticated && (
+               <div className={headerStyle.logOutBtnContainer}>
+                  <button className={headerStyle.logOutBtn} onClick={() => logOut()}>
+                     Se déconnecter
+                  </button>
+               </div>
+            )}
          </header>
 
          <NavBar navbar={navbar} toggleNavbar={toggleNavbar} />

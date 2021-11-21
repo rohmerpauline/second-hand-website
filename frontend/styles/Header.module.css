@@ -6,7 +6,7 @@
    height: 7em;
    padding: 1.5em 2em;
    display: grid;
-   grid-template-columns: max-content auto max-content;
+   grid-template-columns: 10% auto 10%;
    background-color: var(--white);
    position: fixed;
    width: 100%;
@@ -40,4 +40,8 @@
    width: 15em;
    text-align: center;
    cursor: pointer;
+}
+
+.logOutBtnContainer {
+   padding: 1em 3em;
 }
