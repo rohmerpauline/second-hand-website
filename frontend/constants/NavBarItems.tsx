@@ -1,26 +1,28 @@
+import { appRoutes } from './AppRoutes';
+
 export const NAVBAR_ITEMS = [
    {
       name: 'Créer une annonce',
-      path: '/creer-annonce',
+      path: appRoutes.CREATE_AD,
    },
    {
       name: 'Rechercher',
-      path: '/recherche',
+      path: appRoutes.RESEARCH,
    },
    {
       name: 'Mes favoris',
-      path: '/mes-favoris',
+      path: appRoutes.FAVORITES,
    },
    {
       name: 'Mes messages',
-      path: '/mes-messages',
+      path: appRoutes.MESSAGES,
    },
    {
       name: 'Mon compte',
-      path: '/mon-compte',
+      path: appRoutes.ACCOUNT,
    },
    {
       name: 'Se connecter',
-      path: '/login',
+      path: appRoutes.LOGIN,
    },
 ];
