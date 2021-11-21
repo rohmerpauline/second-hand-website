@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
+import AuthContextProps from './props';
 
-export const AuthContext = createContext();
+export const AuthContext = createContext([]);
 
 const AuthContextProvider = ({ children }: AuthContextProps) => {
    /*    const [isAuth, setIsAuth] = useState(false);
