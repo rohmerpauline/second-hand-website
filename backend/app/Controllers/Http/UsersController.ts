@@ -33,7 +33,6 @@ export default class UsersController {
 
     try {
       const token = await auth.use('api').attempt(email, password)
-      console.log('Connecté')
       return token
     } catch(err){
       return response.badRequest('Identifiant ou mot de passe incorrects.')

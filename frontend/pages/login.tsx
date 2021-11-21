@@ -4,10 +4,7 @@ import axios from 'axios';
 import Link from 'next/link';
 
 import FormTitle from '../components/Form/FormTitle/FormTitle';
-import Label from '../components/Form/Label/Label';
 import FormikControl from '../components/Form/FormikControl/FormikControl';
-import Input from '../components/Form/Input/Input';
-import TextArea from '../components/Form/TextArea/TextArea';
 import MainButton from '../components/MainButton/MainButton';
 import AccountMessage from '../components/AccountMessage/AccountMessage';
 
@@ -16,8 +13,6 @@ import { AuthContext } from '../../frontend/Context/Auth/AuthContext';
 import { Formik, Form } from 'formik';
 
 import LoginSchema from '../Validators/LoginSchema';
-
-import connexionStyle from '../styles/Connexion.module.css';
 
 const login = () => {
    const initialValues = {
@@ -40,12 +35,12 @@ const login = () => {
          data: values,
       })
          .then(function (response) {
-            console.log(response.data);
             const { token } = response.data;
             setIsAuth({
                isAuthenticated: true,
                token: token,
             });
+            router.push('/');
          })
          .catch((error) => {
             setError(error);
