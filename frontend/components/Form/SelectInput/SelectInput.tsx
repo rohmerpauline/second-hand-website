@@ -11,10 +11,10 @@ const SelectInput = (props: SelectInputProps) => {
       <div className={formStyle.inputcontainer}>
          {label && <Label htmlFor={name}>{label}</Label>}
          <Field as='select' className={formStyle.input} id={name} name={name} {...rest}>
-            {options.map((options) => {
+            {options.map((option) => {
                return (
-                  <option key={options.value} value={options.value}>
-                     {options.key}
+                  <option key={option.value} value={option.value}>
+                     {option.key}
                   </option>
                );
             })}
