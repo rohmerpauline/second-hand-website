@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import ReactTooltip from 'react-tooltip';
-import Form from '../components/Form/Form';
-import FormTitle from '../components/FormTitle/FormTitle';
-import { useHandleChange, useHandleSelect } from '../hooks';
-import { OFFER_OBJECT, ASK_OBJECT, ASK_SERVICE, OFFER_SERVICE } from '../Configs/CreateProductFormContent';
 
-import createAddStyle from '../styles/CreateAdd.module.css';
+import FormTitle from '../components/Form/FormTitle/FormTitle';
+import CreateAdButton from '../components/CreateAdButton/CreateAdButton';
+import MainButton from '../components/MainButton/MainButton';
+import FormikControl from '../components/Form/FormikControl/FormikControl';
+
+import { CATEGORIES_ITEMS, OBJECT_CONDITION_ITEMS } from '../constants';
+
+import { Formik, Form } from 'formik';
 import { FaHandsHelping, FaHandHolding } from 'react-icons/fa';
 
 const buttonContent = {
@@ -15,124 +17,111 @@ const buttonContent = {
    subButtonService: ["J'ai besoin d'un service", 'Je propose un service'],
 };
 
-const creerannonce = () => {
-   const [button, setButton] = useState('Objet');
-   const [subButtons, setSubButtons] = useState([]);
-   const [subButton, setSubButton] = useState('');
-   const [formContentInput, setFormContentInput] = useState([]);
+const radioOptionsObject = [
+   { key: buttonContent.subButtonObject[0], value: '0' },
+   { key: buttonContent.subButtonObject[1], value: '1' },
+];
 
-   const [state, setState] = useState({
+const radioOptionsService = [
+   { key: buttonContent.subButtonService[0], value: '2' },
+   { key: buttonContent.subButtonService[1], value: '3' },
+];
+
+const creerannonce = () => {
+   const [buttonSelected, setButtonSelected] = useState('Objet');
+   const [subButtons, setSubButtons] = useState([]);
+   const [subButtonSelected, setSubButtonSelected] = useState('');
+
+   const initialValues = {
       title: '',
       description: '',
       location: '',
       categories: '',
       objectcondition: '',
       typeOfAdd: '',
-   });
-
-   useEffect(() => {
-      setState((prevState) => ({
-         ...prevState,
-         typeOfAdd: subButton,
-      }));
-   }, [subButton]);
-
-   const formTitle = {
-      title: 'Je créer une annonce',
-   };
-
-   const formContent = {
-      formInput: formContentInput,
-      buttonText: 'Je créer mon annonce',
    };
 
    useEffect(() => {
-      if (button === buttonContent.btnObject) {
+      if (buttonSelected === buttonContent.btnObject) {
          setSubButtons(buttonContent.subButtonObject);
-         setSubButton(buttonContent.subButtonObject[0]);
+         setSubButtonSelected(buttonContent.subButtonObject[0]);
       } else {
          setSubButtons(buttonContent.subButtonService);
-         setSubButton(buttonContent.subButtonService[0]);
+         setSubButtonSelected(buttonContent.subButtonService[0]);
       }
-   }, [button]);
+   }, [buttonSelected]);
 
-   const handleProductChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      useHandleChange({ e, setState });
+   const onSubmit = (values) => {
+      console.log('Form data', values);
    };
-
-   const handleSelect = (e: any): void => {
-      useHandleSelect({ e, setState });
-   };
-
-   const handleProductSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-      e.preventDefault();
-   };
-
-   useEffect(() => {
-      switch (subButton) {
-         case buttonContent.subButtonObject[0]:
-            setFormContentInput(OFFER_OBJECT);
-            break;
-         case buttonContent.subButtonObject[1]:
-            setFormContentInput(ASK_OBJECT);
-            break;
-         case buttonContent.subButtonService[0]:
-            setFormContentInput(ASK_SERVICE);
-            break;
-         case buttonContent.subButtonService[1]:
-            setFormContentInput(OFFER_SERVICE);
-            break;
-         default: //default
-      }
-   }, [subButton]);
 
    return (
       <>
-         <button
-            onClick={() => setButton(buttonContent.btnObject)}
-            className={button === buttonContent.btnObject ? createAddStyle.btniconeselected : createAddStyle.btnicone}
-            data-tip
-            data-for='object-tip'
-            data-delay-show='500'
-         >
+         <CreateAdButton buttonSelected={buttonSelected} onClickButton={setButtonSelected} buttonContent='Objet'>
             <FaHandHolding size={20} />
-         </button>
-         <ReactTooltip id='object-tip' place='right' effect='float' arrowColor='black' delayShow={500}>
-            Objet
-         </ReactTooltip>
-         <button
-            onClick={() => setButton(buttonContent.btnService)}
-            className={button === buttonContent.btnService ? createAddStyle.btniconeselected : createAddStyle.btnicone}
-            data-tip
-            data-for='service-tip'
-            data-delay-show='500'
-         >
+         </CreateAdButton>
+         <CreateAdButton buttonSelected={buttonSelected} onClickButton={setButtonSelected} buttonContent='Service'>
             <FaHandsHelping size={20} />
-         </button>
-         <ReactTooltip id='service-tip' place='right' effect='float' arrowColor='black' delayShow={500}>
-            Service
-         </ReactTooltip>
-         <FormTitle formTitle={formTitle} />
-         {subButtons &&
-            subButtons.map((button, index) => {
+         </CreateAdButton>
+         <FormTitle title='Je créer une annonce' />
+         <Formik initialValues={initialValues} onSubmit={onSubmit}>
+            {(formik) => {
                return (
-                  <button
-                     key={index}
-                     onClick={() => setSubButton(button)}
-                     type='button'
-                     className={button === subButton ? createAddStyle.btnselected : createAddStyle.btn}
-                  >
-                     {button}
-                  </button>
+                  <Form>
+                     <FormikControl
+                        control='radio'
+                        name='typeOfAdd'
+                        options={buttonSelected === buttonContent.btnObject ? radioOptionsObject : radioOptionsService}
+                        onClick={setSubButtonSelected}
+                        subButton={subButtonSelected}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='text'
+                        placeholder='plante, meuble-tv, lampe...'
+                        name='title'
+                        label='Titre de mon annonce :'
+                     />
+                     <FormikControl
+                        control='textarea'
+                        type='text'
+                        placeholder='En super bon état. À venir chercher entre 10h et 12h.'
+                        name='description'
+                        label='Descriptif de mon annonce :'
+                        rows={8}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='text'
+                        placeholder='Bruxelles, Namur, Liège...'
+                        name='location'
+                        label='Lieu de mon annonce :'
+                     />
+                     {(subButtonSelected === 'Je donne' || subButtonSelected === 'Je demande') && (
+                        <FormikControl
+                           control='select'
+                           type='text'
+                           options={CATEGORIES_ITEMS}
+                           name='categories'
+                           label='Catégories :'
+                        />
+                     )}
+                     {subButtonSelected === 'Je donne' && (
+                        <FormikControl
+                           control='select'
+                           type='text'
+                           options={OBJECT_CONDITION_ITEMS}
+                           name='objectcondition'
+                           label="État de l'objet :"
+                        />
+                     )}
+                     <MainButton type='submit' style='main'>
+                        Je m'enregistre
+                     </MainButton>
+                  </Form>
                );
-            })}
-         <Form
-            formContent={formContent}
-            handleChange={handleProductChange}
-            handleSelect={handleSelect}
-            handleSubmit={handleProductSubmit}
-         />
-         {/* {JSON.stringify(state)} */}
+            }}
+         </Formik>
       </>
    );
 };

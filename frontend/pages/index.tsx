@@ -1,18 +1,7 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import React from 'react';
 
-const Home: NextPage = () => {
-   return (
-      <div>
-         <Head>
-            <title>WebDev Newz</title>
-            <meta name='keyword' content='web development, programming' />
-         </Head>
-         <h1>Welcome to Next</h1>
-      </div>
-   );
+const index = () => {
+   return <div>PAGE D'ACCUEIL</div>;
 };
 
-export default Home;
+export default index;

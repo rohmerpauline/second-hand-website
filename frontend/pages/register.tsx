@@ -1,81 +1,102 @@
 import { useState } from 'react';
-import Link from 'next/link';
-import Form from '../components/Form/Form';
-import FormTitle from '../components/FormTitle/FormTitle';
-import { useHandleChange } from '../hooks';
-import connexionStyle from '../styles/Connexion.module.css';
+import router from 'next/router';
+import axios from 'axios';
+
+import FormTitle from '../components/Form/FormTitle/FormTitle';
+import MainButton from '../components/MainButton/MainButton';
+import FormikControl from '../components/Form/FormikControl/FormikControl';
+import AccountMessage from '../components/AccountMessage/AccountMessage';
+
+import { Formik, Form } from 'formik';
+
+import RegisterSchema from '../Validators/RegisterSchema';
 
 const register = () => {
-   const formTitle = {
-      title: "Je m'enregistre",
-      subtitle: 'Pour créer un compte, remplissez les champs suivants :',
-   };
-
-   const formContent = {
-      formInput: [
-         {
-            id: 1,
-            type: 'text',
-            name: 'lastname',
-            placeholder: 'Mon nom',
-         },
-         {
-            id: 2,
-            type: 'text',
-            name: 'firstname',
-            placeholder: 'Mon prénom',
-         },
-         {
-            id: 3,
-            type: 'email',
-            name: 'email',
-            placeholder: 'Mon adresse e-mail',
-         },
-         {
-            id: 4,
-            type: 'password',
-            name: 'password',
-            placeholder: 'Mon mot de passe',
-         },
-         {
-            id: 5,
-            type: 'password',
-            name: 'password_confirmation',
-            placeholder: 'Je confirme mon mot de passe',
-         },
-      ],
-      buttonText: "Je m'enregistre",
-   };
-
-   const [state, setState] = useState({
-      lastname: '',
+   const initialValues = {
       firstname: '',
+      lastname: '',
       email: '',
       password: '',
-      password_confirmation: '',
-   });
-
-   const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      useHandleChange({ e, setState });
+      passwordConfirmation: '',
    };
 
-   const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-      e.preventDefault();
+   const [error, setError] = useState(null);
+   const [visibilityField, setVisibilityField] = useState(false);
+
+   const onSubmit = (values: {}) => {
+      console.log('Form data', values);
+      axios({
+         method: 'POST',
+         url: '/user/register',
+         data: values,
+      })
+         .then(function (response) {
+            if (response.data === 'User created') {
+               router.push('/');
+            } else if (response.data.error) {
+               setError(response.data.error);
+            }
+         })
+         .catch((error) => {
+            return;
+         });
    };
 
    return (
-      <>
-         <FormTitle formTitle={formTitle} />
-         <Form formContent={formContent} handleChange={handleRegisterChange} handleSubmit={handleRegisterSubmit} />
-         <p className={connexionStyle.message}>
-            J'ai déjà un compte,{' '}
-            <Link href='/login'>
-               <span className={connexionStyle.registerlink}>se connecter</span>
-            </Link>
-            .
-         </p>
-         {/* {JSON.stringify(state)} */}
-      </>
+      <div>
+         <FormTitle title={"Je m'enregistre"} subtitle='Pour créer un compte, remplissez les champs suivants :' />
+         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={RegisterSchema}>
+            {(formik) => {
+               return (
+                  <Form>
+                     <FormikControl
+                        control='input'
+                        type='text'
+                        placeholder='Mon prénom'
+                        name='firstname'
+                        errorMessage={error ? error.firstname : null}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='text'
+                        placeholder='Mon nom'
+                        name='lastname'
+                        errorMessage={error ? error.lastname : null}
+                     />
+                     <FormikControl
+                        control='input'
+                        type='email'
+                        placeholder='Mon email'
+                        name='email'
+                        errorMessage={error ? error.email : null}
+                     />
+                     <FormikControl
+                        control='input'
+                        type={visibilityField === true ? 'text' : 'password'}
+                        placeholder='Mon mot de passe'
+                        name='password'
+                        errorMessage={error ? error.password : null}
+                        eye={true}
+                        visibilityField={visibilityField}
+                        setVisibilityField={setVisibilityField}
+                     />
+                     <FormikControl
+                        control='input'
+                        type={visibilityField === true ? 'text' : 'password'}
+                        placeholder='Je confirme mon mot de passe'
+                        name='passwordConfirmation'
+                        errorMessage={error ? error.passwordConfirmation : null}
+                        eye={true}
+                        visibilityField={visibilityField}
+                        setVisibilityField={setVisibilityField}
+                     />
+                     <MainButton>Je m'enregistre</MainButton>
+                  </Form>
+               );
+            }}
+         </Formik>
+         <AccountMessage href='/login' text="J'ai déjà un compte" textLink='se connecter' />
+      </div>
    );
 };
 

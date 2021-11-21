@@ -1,64 +1,79 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import router from 'next/router';
+import axios from 'axios';
 import Link from 'next/link';
-import Form from '../components/Form/Form';
-import FormTitle from '../components/FormTitle/FormTitle';
-import { useHandleChange } from '../hooks';
-import connexionStyle from '../styles/Connexion.module.css';
+
+import FormTitle from '../components/Form/FormTitle/FormTitle';
+import FormikControl from '../components/Form/FormikControl/FormikControl';
+import MainButton from '../components/MainButton/MainButton';
+import AccountMessage from '../components/AccountMessage/AccountMessage';
+
+import { AuthContext } from '../../frontend/Context/Auth/AuthContext';
+
+import { Formik, Form } from 'formik';
+
+import LoginSchema from '../Validators/LoginSchema';
 
 const login = () => {
-   const formTitle = {
-      title: 'Je me connecte',
-   };
-
-   const formContent = {
-      formInput: [
-         {
-            id: 1,
-            type: 'text',
-            name: 'email',
-            placeholder: 'Mon adresse email',
-         },
-         {
-            id: 2,
-            type: 'password',
-            name: 'password',
-            placeholder: 'Mon mot de passe',
-         },
-         {
-            id: 3,
-            type: 'checkbox',
-            name: 'rememberMeToken',
-            label: 'Remember me',
-         },
-      ],
-      buttonText: 'Je me connecte',
-   };
-
-   const [state, setState] = useState({
+   const initialValues = {
       email: '',
       password: '',
-   });
-
-   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      useHandleChange({ e, setState });
+      rememberMe: [],
    };
 
-   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-      e.preventDefault();
+   const [error, setError] = useState('');
+
+   const [visibilityField, setVisibilityField] = useState(false);
+   const [isAuth, setIsAuth] = useContext(AuthContext);
+
+   const onSubmit = (values) => {
+      console.log('Form data', values);
+
+      axios({
+         method: 'post',
+         url: '/user/login',
+         data: values,
+      })
+         .then(function (response) {
+            const { token } = response.data;
+            setIsAuth({
+               isAuthenticated: true,
+               token: token,
+            });
+            router.push('/');
+         })
+         .catch((error) => {
+            setError(error);
+            console.log(error);
+         });
    };
+
+   const checkBoxOption = [{ key: 'Remember me', value: 'true' }];
 
    return (
       <>
-         <FormTitle formTitle={formTitle} />
-         <Form formContent={formContent} handleChange={handleLoginChange} handleSubmit={handleLoginSubmit} />
-         <p className={connexionStyle.message}>
-            Je n'ai pas de compte,{' '}
-            <Link href='/register'>
-               <span className={connexionStyle.registerlink}>créer un compte</span>
-            </Link>
-            .
-         </p>
-         {/* {JSON.stringify(state)} */}
+         <FormTitle title='Je me connecte' />
+         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={LoginSchema}>
+            {(formik) => {
+               return (
+                  <Form>
+                     <FormikControl control='input' type='email' placeholder='Mon email' name='email' />
+                     <FormikControl
+                        control='input'
+                        type={visibilityField === true ? 'text' : 'password'}
+                        placeholder='Mon mot de passe'
+                        name='password'
+                        eye={true}
+                        visibilityField={visibilityField}
+                        setVisibilityField={setVisibilityField}
+                     />
+                     <FormikControl control='checkbox' name='rememberMe' options={checkBoxOption} />
+                     <MainButton>Je me connecte</MainButton>
+                  </Form>
+               );
+            }}
+         </Formik>
+         <AccountMessage href='/register' text="Je n'ai pas de compte" textLink='créer un compte' />
       </>
    );
 };
