@@ -3,12 +3,15 @@ import { useState, useEffect } from 'react';
 import FormTitle from '../components/Form/FormTitle/FormTitle';
 import CreateAdButton from '../components/CreateAdButton/CreateAdButton';
 import MainButton from '../components/MainButton/MainButton';
+import Label from '../components/Form/Label/Label';
 import FormikControl from '../components/Form/FormikControl/FormikControl';
 
 import { CATEGORIES_ITEMS, OBJECT_CONDITION_ITEMS } from '../constants';
 
 import { Formik, Form } from 'formik';
 import { FaHandsHelping, FaHandHolding } from 'react-icons/fa';
+
+import formStyle from '../styles/Form.module.css';
 
 const buttonContent = {
    btnObject: 'Objet',
@@ -39,6 +42,9 @@ const creerannonce = () => {
       categories: '',
       objectcondition: '',
       typeOfAdd: '',
+      image1: '',
+      image2: '',
+      image3: '',
    };
 
    useEffect(() => {
@@ -65,62 +71,68 @@ const creerannonce = () => {
          </CreateAdButton>
          <FormTitle title='Je créer une annonce' />
          <Formik initialValues={initialValues} onSubmit={onSubmit}>
-            {(formik) => {
-               return (
-                  <Form>
+            {({ setFieldValue }) => (
+               <Form>
+                  <FormikControl
+                     control='radio'
+                     name='typeOfAdd'
+                     options={buttonSelected === buttonContent.btnObject ? radioOptionsObject : radioOptionsService}
+                     onClick={setSubButtonSelected}
+                     subButton={subButtonSelected}
+                  />
+                  <FormikControl
+                     control='input'
+                     type='text'
+                     placeholder='plante, meuble-tv, lampe...'
+                     name='title'
+                     label='Titre de mon annonce :'
+                  />
+                  {subButtonSelected === 'Je donne' && (
+                     <>
+                        <Label>Ajouter des photos :</Label>
+                        <div className={formStyle.uploadContainer}>
+                           <FormikControl control='upload' name='image1' onChange={setFieldValue} />
+                           <FormikControl control='upload' name='image2' onChange={setFieldValue} />
+                           <FormikControl control='upload' name='image3' onChange={setFieldValue} />
+                        </div>
+                     </>
+                  )}
+                  <FormikControl
+                     control='textarea'
+                     type='text'
+                     placeholder='En super bon état. À venir chercher entre 10h et 12h.'
+                     name='description'
+                     label='Descriptif de mon annonce :'
+                     rows={8}
+                  />
+                  <FormikControl
+                     control='input'
+                     type='text'
+                     placeholder='Bruxelles, Namur, Liège...'
+                     name='location'
+                     label='Lieu de mon annonce :'
+                  />
+                  {(subButtonSelected === 'Je donne' || subButtonSelected === 'Je demande') && (
                      <FormikControl
-                        control='radio'
-                        name='typeOfAdd'
-                        options={buttonSelected === buttonContent.btnObject ? radioOptionsObject : radioOptionsService}
-                        onClick={setSubButtonSelected}
-                        subButton={subButtonSelected}
-                     />
-                     <FormikControl
-                        control='input'
+                        control='select'
                         type='text'
-                        placeholder='plante, meuble-tv, lampe...'
-                        name='title'
-                        label='Titre de mon annonce :'
+                        options={CATEGORIES_ITEMS}
+                        name='categories'
+                        label='Catégories :'
                      />
+                  )}
+                  {subButtonSelected === 'Je donne' && (
                      <FormikControl
-                        control='textarea'
+                        control='select'
                         type='text'
-                        placeholder='En super bon état. À venir chercher entre 10h et 12h.'
-                        name='description'
-                        label='Descriptif de mon annonce :'
-                        rows={8}
+                        options={OBJECT_CONDITION_ITEMS}
+                        name='objectcondition'
+                        label="État de l'objet :"
                      />
-                     <FormikControl
-                        control='input'
-                        type='text'
-                        placeholder='Bruxelles, Namur, Liège...'
-                        name='location'
-                        label='Lieu de mon annonce :'
-                     />
-                     {(subButtonSelected === 'Je donne' || subButtonSelected === 'Je demande') && (
-                        <FormikControl
-                           control='select'
-                           type='text'
-                           options={CATEGORIES_ITEMS}
-                           name='categories'
-                           label='Catégories :'
-                        />
-                     )}
-                     {subButtonSelected === 'Je donne' && (
-                        <FormikControl
-                           control='select'
-                           type='text'
-                           options={OBJECT_CONDITION_ITEMS}
-                           name='objectcondition'
-                           label="État de l'objet :"
-                        />
-                     )}
-                     <MainButton type='submit' style='main'>
-                        Je m'enregistre
-                     </MainButton>
-                  </Form>
-               );
-            }}
+                  )}
+                  <MainButton>Je m'enregistre</MainButton>
+               </Form>
+            )}
          </Formik>
       </>
    );

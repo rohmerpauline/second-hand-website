@@ -5,6 +5,6 @@ export default interface RadioButtonProps {
     value: string,
     key: string
   }[],
-  onClick?: (key: string) => string;
+  onClick?: (key: string) => void;
   subButton?: string;
 }

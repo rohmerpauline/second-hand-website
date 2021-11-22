@@ -1,4 +1,4 @@
 export default interface LabelProps {
-   children: string,
-   htmlFor: string,
+   children: string | React.ReactNode,
+   htmlFor?: string,
 }
