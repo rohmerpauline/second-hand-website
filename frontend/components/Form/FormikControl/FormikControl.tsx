@@ -3,6 +3,7 @@ import TextArea from '../TextArea/TextArea';
 import SelectInput from '../SelectInput/SelectInput';
 import RadioButton from '../RadioButton/RadioButton';
 import CheckBox from '../CheckBox/CheckBox';
+import InputFile from '../InputFile/InputFile';
 
 import FormikControlProps from './props';
 
@@ -24,6 +25,9 @@ const FormikControl = (props: FormikControlProps) => {
          break;
       case 'checkbox':
          return <CheckBox {...rest} />;
+         break;
+      case 'upload':
+         return <InputFile {...rest} />;
          break;
       case 'date':
          break;
