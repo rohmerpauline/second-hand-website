@@ -1,6 +1,6 @@
 # second-hand-website
 
-/!\ Work in progress /!\
+### /!\ Work in progress /!\
 
 I'm currently building a second-hand website specialized in handy-work where users could:
 
@@ -10,6 +10,7 @@ I'm currently building a second-hand website specialized in handy-work where use
 
 -  NextJs / React
 -  AdonisJs
+-  Typescript
 -  Formik
 -  Yup
 -  Axios
@@ -17,6 +18,9 @@ I'm currently building a second-hand website specialized in handy-work where use
 ## Goal of this project
 
 -  Learn NextJs
+-  Improve ReactJs knowledge
+-  Practice TypeScript
+-  Learn AdonisJs
 -  Understand and build the connection between front-end and back-end
 
 ## Some previews
