@@ -34,6 +34,8 @@ Route.get('/', async () => {
 Route.post('register', 'UsersController.register').prefix('user')
 Route.post('login', 'UsersController.login').prefix('user')
 
+Route.post('create', 'AdsController.create').prefix('ads')
+
 Route.get('health', async ({ response }) => {
   const report = await HealthCheck.getReport()
 

@@ -10,13 +10,7 @@ const ProtectedRoute = ({ children, router }: ProtectedRouteProps) => {
 
    const isAuthenticated = isAuth.isAuthenticated;
 
-   let unprotectedRoutes = [
-      appRoutes.HOME,
-      appRoutes.LOGIN,
-      appRoutes.REGISTER,
-      appRoutes.CREATE_AD,
-      appRoutes.RESEARCH,
-   ];
+   let unprotectedRoutes = [appRoutes.HOME, appRoutes.LOGIN, appRoutes.REGISTER, appRoutes.RESEARCH];
    let routesNotNeededWhenLogIn = [appRoutes.LOGIN, appRoutes.REGISTER];
 
    let pathIsProtected = unprotectedRoutes.indexOf(router.pathname) === -1;

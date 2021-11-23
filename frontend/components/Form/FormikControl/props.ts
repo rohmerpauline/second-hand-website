@@ -13,6 +13,7 @@ export default interface FormikControlProps {
       value:string,
       key: string
    }[];
-   onClick?: () => string;
+   onClick?: ({}) =>void;
   subButton?: string;
+  onChange?: any;
 }

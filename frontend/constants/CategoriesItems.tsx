@@ -1,5 +1,5 @@
 export const CATEGORIES_ITEMS = [
-   { value: '', key: 'Sélectionner une option...' },
+   { value: undefined, key: 'Sélectionner une option...' },
    { value: 'furniture', key: 'Meubles', name: 'categories' },
    { value: 'clothes', key: 'Vêtements', name: 'categories' },
    { value: 'leisureSport', key: 'Loisirs & Sport', name: 'categories' },

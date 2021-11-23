@@ -33,7 +33,14 @@ export default class UsersController {
 
     try {
       const token = await auth.use('api').attempt(email, password)
-      return token
+      const userId= await User.findBy('email', email)
+
+      const user = {
+        userId: userId?.$attributes.id,
+        token: token
+      }
+
+      return user
     } catch(err){
       return response.badRequest('Identifiant ou mot de passe incorrects.')
     }

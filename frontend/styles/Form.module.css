@@ -19,7 +19,7 @@
 }
 
 .inputcontainer {
-   margin: 0.5em 0 0 0;
+   margin: 0.5em 0 0.5em 0;
 }
 
 .input,
@@ -33,8 +33,7 @@
    box-sizing: border-box;
    width: 100%;
    border-radius: 5px;
-
-   margin: 0.4em auto;
+   margin: 1em auto;
 }
 
 .input,
@@ -61,7 +60,7 @@
 
 .label {
    font-weight: 300;
-   margin-right: 0.5em;
+   margin: 2em 0.5em 0.5em 0;
 }
 
 .message {
@@ -95,10 +94,65 @@
    cursor: pointer;
 }
 
+/* UPLOAD IMAGE */
+
+.uploadContainer {
+   display: grid;
+   grid-template-columns: repeat(3, max-content);
+   width: 100%;
+}
+
+.uploadIconContainer {
+   border: 1px solid var(--lightgray);
+   border-radius: 5px;
+   height: 6em;
+   width: 6em;
+   margin: 0.5em 1.3em 0 0;
+   position: relative;
+}
+
+.uploadIcon,
+.uploadContainer,
+.uploadIconContainer,
+.previewUpload,
+.deleteUpload {
+   cursor: pointer;
+}
+
+.uploadIcon:hover,
+.uploadIconContainer:hover {
+   opacity: 0.8;
+}
+
+.deleteUpload:hover {
+   transform: scale(1.1);
+}
+
+.uploadIcon {
+   padding: 2em;
+   text-align: center;
+   align-items: center;
+}
+
+.previewUpload {
+   width: 100%;
+   height: 100%;
+   object-fit: fill;
+   overflow: hidden;
+}
+
+.deleteUpload {
+   position: absolute;
+   top: 0;
+   right: 0;
+   padding: 0.1em;
+}
+
 /* RADIO BUTTON */
 
 .radioContainer {
    display: inline-block;
+   margin: 1em 0;
 }
 
 .radioInput {

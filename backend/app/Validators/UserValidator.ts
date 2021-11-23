@@ -25,9 +25,9 @@ export default class UserValidator {
 
   public messages = {
     'email.unique': 'Un compte avec cet email existe déjà.',
-    'firstname.notIn': 'Ce prénom n\'est pas autorisé.'
-    'lastname.notIn': 'Ce nom n\'est pas autorisé.'
-    'password.regex': 'Le mot de passe doit contenir 8 charactères (lettres, chiffres et un charactère spécial).'
+    'firstname.notIn': 'Ce prénom n\'est pas autorisé.',
+    'lastname.notIn': 'Ce nom n\'est pas autorisé.',
+    'password.regex': 'Le mot de passe doit contenir 8 charactères (lettres, chiffres et un charactère spécial).',
     'password.confirmed': 'Les mots de passe ne correspondent pas.'
   }
 }
