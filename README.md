@@ -1,6 +1,6 @@
 # second-hand-website
 
---- Work in progress ---
+/!\ Work in progress /!\
 
 I'm currently building a second-hand website specialized in handy-work where users could:
 
@@ -19,4 +19,12 @@ I'm currently building a second-hand website specialized in handy-work where use
 -  Learn NextJs
 -  Understand and build the connection between front-end and back-end
 
+## Some previews
+
 ![Register page](/images/register.jpg 'Register page')
+
+![Login page](/images/login.jpg 'Login page')
+
+![Search page](/images/search.jpg 'Search page')
+
+![Create ad page](/images/createAd.jpg 'Create Ad page')
