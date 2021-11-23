@@ -2,15 +2,15 @@ import FormikControl from '../Form/FormikControl/FormikControl';
 import Label from '../Form/Label/Label';
 import MainButton from '../MainButton/MainButton';
 
-import { CATEGORIES_ITEMS, OBJECT_CONDITION_ITEMS } from '../../constants';
+import { CATEGORIES_ITEMS, OBJECT_CONDITION_ITEMS, OBJECT_SUBBUTTONS } from '../../constants';
 
 import { Formik, Form } from 'formik';
 
 import formStyle from '../../styles/Form.module.css';
 
 const radioOptionsObject = [
-   { key: 'Je donne', value: '0' },
-   { key: 'Je demande', value: '1' },
+   { key: OBJECT_SUBBUTTONS[0], value: '0' },
+   { key: OBJECT_SUBBUTTONS[1], value: '1' },
 ];
 
 const CreateAdObjectForm = (props) => {
@@ -46,7 +46,7 @@ const CreateAdObjectForm = (props) => {
                   name='title'
                   label='Titre de mon annonce :'
                />
-               {subButtonSelected === 'Je donne' && (
+               {subButtonSelected === OBJECT_SUBBUTTONS[0] && (
                   <>
                      <Label>Ajouter des photos :</Label>
                      <div className={formStyle.uploadContainer}>
@@ -71,16 +71,14 @@ const CreateAdObjectForm = (props) => {
                   name='location'
                   label='Lieu de mon annonce :'
                />
-               {(subButtonSelected === 'Je donne' || subButtonSelected === 'Je demande') && (
-                  <FormikControl
-                     control='select'
-                     type='text'
-                     options={CATEGORIES_ITEMS}
-                     name='categories'
-                     label='Catégories :'
-                  />
-               )}
-               {subButtonSelected === 'Je donne' && (
+               <FormikControl
+                  control='select'
+                  type='text'
+                  options={CATEGORIES_ITEMS}
+                  name='categories'
+                  label='Catégories :'
+               />
+               {subButtonSelected === OBJECT_SUBBUTTONS[0] && (
                   <FormikControl
                      control='select'
                      type='text'
@@ -89,7 +87,7 @@ const CreateAdObjectForm = (props) => {
                      label="État de l'objet :"
                   />
                )}
-               <MainButton>Je m'enregistre</MainButton>
+               <MainButton>Je créér une annonce</MainButton>
             </Form>
          )}
       </Formik>
