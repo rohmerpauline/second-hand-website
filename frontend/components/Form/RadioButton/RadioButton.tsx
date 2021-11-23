@@ -21,11 +21,7 @@ const RadioButton = (props: RadioButtonProps) => {
                      >
                         <label
                            htmlFor={option.key}
-                           className={
-                              option.value === field.value || subButton === option.key
-                                 ? formStyle.labelChecked
-                                 : formStyle.radioLabel
-                           }
+                           className={option.value === field.value ? formStyle.labelChecked : formStyle.radioLabel}
                         >
                            <input
                               type='radio'
