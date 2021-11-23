@@ -14,11 +14,11 @@ import searchStyle from '../../styles/SearchBox.module.css';
 const SearchBox = () => {
    const initialValues = {
       search: '',
-      objectcondition: '',
+      object_condition: '',
       categories: '',
       location: '',
       typeOfProduct: '',
-      typeOfAdd: '',
+      type_ad: '',
    };
 
    const [filter, setFilter] = useState(false);
@@ -68,7 +68,7 @@ const SearchBox = () => {
                                  control='select'
                                  type='text'
                                  options={OBJECT_CONDITION_ITEMS}
-                                 name='objectcondition'
+                                 name='object_condition'
                               />
                            </div>
                            <div className={searchStyle.radioBtnContainer}>
@@ -82,7 +82,7 @@ const SearchBox = () => {
                            <div className={searchStyle.radioBtnContainer}>
                               <FormikControl
                                  control='radio'
-                                 name='typeOfAdd'
+                                 name='type_ad'
                                  options={radioOptionsTypeAd}
                                  label="Type d'annonce :"
                               />
