@@ -35,10 +35,11 @@ const login = () => {
          data: values,
       })
          .then(function (response) {
-            const { token } = response.data;
+            const { token, userId } = response.data;
             setIsAuth({
                isAuthenticated: true,
                token: token,
+               id: userId,
             });
             router.push('/');
          })
