@@ -23,8 +23,14 @@ I'm currently building a second-hand website specialized in handy-work where use
 
 ![Register page](/images/register.jpg 'Register page')
 
+---
+
 ![Login page](/images/login.jpg 'Login page')
 
+---
+
 ![Search page](/images/search.jpg 'Search page')
+
+---
 
 ![Create ad page](/images/createAd.jpg 'Create Ad page')
