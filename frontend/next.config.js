@@ -16,12 +16,12 @@ module.exports = {
    async rewrites() {
       return [
          {
-            source: '/user/login',
-            destination: 'http://127.0.0.1:3333/user/login',
+            source: '/user/:slug',
+            destination: 'http://127.0.0.1:3333/user/:slug',
          },
          {
-            source: '/user/register',
-            destination: 'http://127.0.0.1:3333/user/register',
+            source: '/ads/:slug',
+            destination: 'http://127.0.0.1:3333/ads/:slug',
          },
       ];
    },
