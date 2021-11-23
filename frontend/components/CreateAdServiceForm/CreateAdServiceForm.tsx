@@ -52,7 +52,7 @@ const CreateAdServiceForm = (props) => {
                name='location'
                label='Lieu de mon annonce :'
             />
-            <MainButton>Je m'enregistre</MainButton>
+            <MainButton>Je créér une annonce</MainButton>
          </Form>
       </Formik>
    );
