@@ -6,7 +6,7 @@ I'm currently building a second-hand website specialized in handy-work where use
 
 -  Post Ads whether to ask/offer for an handy-work object or service -- for free -- (give an old tool that you don't user, ask for someone to help you fix you shelves...)
 
-## Technologies used:
+## Technologies used
 
 -  NextJs / React
 -  AdonisJs
