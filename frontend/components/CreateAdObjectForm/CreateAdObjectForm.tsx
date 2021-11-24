@@ -6,6 +6,9 @@ import { CATEGORIES_ITEMS, OBJECT_CONDITION_ITEMS, OBJECT_SUBBUTTONS } from '../
 
 import { Formik, Form } from 'formik';
 
+import AdGiveObjectValidator from '../../Validators/AdGiveObjectSchema';
+import AdAskObjectValidator from '../../Validators/AdAskObjectSchema';
+
 import formStyle from '../../styles/Form.module.css';
 
 const radioOptionsObject = [
@@ -29,7 +32,11 @@ const CreateAdObjectForm = (props) => {
    };
 
    return (
-      <Formik initialValues={initialValues} onSubmit={onSubmit}>
+      <Formik
+         initialValues={initialValues}
+         onSubmit={onSubmit}
+         validationSchema={subButtonSelected === OBJECT_SUBBUTTONS[0] ? AdGiveObjectValidator : AdAskObjectValidator}
+      >
          {({ setFieldValue, resetForm }) => (
             <Form>
                <FormikControl
