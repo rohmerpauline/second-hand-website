@@ -5,6 +5,8 @@ import { Formik, Form } from 'formik';
 
 import { SERVICE_SUBBUTTONS } from '../../constants';
 
+import AdServiceSchema from '../../Validators/AdServiceSchema';
+
 const radioOptionsService = [
    { key: SERVICE_SUBBUTTONS[0], value: '2' },
    { key: SERVICE_SUBBUTTONS[1], value: '3' },
@@ -21,7 +23,7 @@ const CreateAdServiceForm = (props) => {
    };
 
    return (
-      <Formik initialValues={initialValues} onSubmit={onSubmit}>
+      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={AdServiceSchema}>
          <Form>
             <FormikControl
                control='radio'
