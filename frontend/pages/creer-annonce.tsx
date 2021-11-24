@@ -8,6 +8,7 @@ import CreateAdObjectForm from '../components/CreateAdObjectForm/CreateAdObjectF
 import CreateAdServiceForm from '../components/CreateAdServiceForm/CreateAdServiceForm';
 
 import { AuthContext } from '../Context/Auth/AuthContext';
+/* import { useConvertToBase64 } from '../hooks'; */
 
 import { OBJECT_BUTTON, OBJECT_SUBBUTTONS, SERVICE_SUBBUTTONS, appRoutes } from '../constants';
 
@@ -18,6 +19,7 @@ const creerannonce = () => {
    const [subButtons, setSubButtons] = useState([]);
    const [subButtonSelected, setSubButtonSelected] = useState('');
    const [isAuth] = useContext(AuthContext);
+   /* const [base64File, setBase64File] = useState(null); */
 
    useEffect(() => {
       if (buttonSelected === OBJECT_BUTTON) {
@@ -30,8 +32,13 @@ const creerannonce = () => {
    }, [buttonSelected]);
 
    const onSubmit = (values, { resetForm }) => {
+      /* const base64 = await useConvertToBase64(values.image1, setBase64File); */
+
       const payload = {
          ...values,
+         image1: values.image1.name,
+         image2: values.image2.name,
+         image3: values.image2.name,
          user_id: isAuth.id,
       };
 
