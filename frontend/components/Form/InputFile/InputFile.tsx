@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Label from '../Label/Label';
 import TextError from '../TextError/TextError';
 
-import { ErrorMessage } from 'formik';
+import { useField } from 'formik';
 
 import formStyle from '../../../styles/Form.module.css';
 import { MdAddAPhoto } from 'react-icons/md';
@@ -16,6 +16,8 @@ const InputFile = (props: InputFileProps) => {
 
    const [previewFile, setPreviewFile] = useState(null);
 
+   const [field, meta] = useField(name);
+
    const clearInputFile = (name: string): void => {
       setPreviewFile(null);
       onChange(name, '');
@@ -23,7 +25,9 @@ const InputFile = (props: InputFileProps) => {
 
    return (
       <div className={formStyle.inputcontainer}>
-         <div className={formStyle.uploadIconContainer}>
+         <div
+            className={meta.error && meta.touched ? formStyle.uploadIconContainerError : formStyle.uploadIconContainer}
+         >
             <Label htmlFor={name}>
                {!previewFile && <MdAddAPhoto size={30} className={formStyle.uploadIcon} />}
                {previewFile && (
@@ -50,7 +54,7 @@ const InputFile = (props: InputFileProps) => {
             }}
             hidden
          />
-         <ErrorMessage name={name} component={TextError} />
+         {/*  <ErrorMessage name={name} component={TextError} /> */}
       </div>
    );
 };
