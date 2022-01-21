@@ -10,7 +10,7 @@ export default interface FormikControlProps {
    setVisibilityField?: ({}) =>void;
    rows?: number,
    options?: {
-      value:string,
+      value: number | string,
       key: string
    }[];
    onClick?: ({}) =>void;
