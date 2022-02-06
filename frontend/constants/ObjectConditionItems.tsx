@@ -5,3 +5,13 @@ export const OBJECT_CONDITION_ITEMS = [
    { value: 'averageCondition', key: 'État moyen', name: 'object_condition' },
    { value: 'satisfactoryCondition', key: 'État satisfaisant', name: 'object_condition' },
 ];
+
+const objectCondition = [];
+
+OBJECT_CONDITION_ITEMS.map((item) => {
+   objectCondition.push(item.value);
+});
+
+objectCondition.shift();
+
+export const OBJECT_CONDITION_VALUES = objectCondition;

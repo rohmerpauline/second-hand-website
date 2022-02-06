@@ -12,3 +12,13 @@ export const CATEGORIES_ITEMS = [
    { value: 'booksMoviesMusic', key: 'Livres, films & musiques', name: 'categories' },
    { value: 'shoes', key: 'Chaussures', name: 'categories' },
 ];
+
+const categories = [];
+
+CATEGORIES_ITEMS.map((item) => {
+   categories.push(item.value);
+});
+
+categories.shift();
+
+export const CATEGORIES_VALUES = categories;

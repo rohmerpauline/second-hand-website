@@ -29,7 +29,8 @@
 
 .input,
 .textarea,
-.inputError {
+.inputError,
+.textareaError {
    box-sizing: border-box;
    width: 100%;
    border-radius: 5px;
@@ -42,11 +43,14 @@
    padding: 0em 0.8em;
 }
 
-.inputError {
+.inputError,
+.textareaError,
+.uploadIconContainerError {
    border: 1px solid var(--red);
 }
 
-.textarea {
+.textarea,
+.textareaError {
    padding: 0.5em 0.8em;
    line-height: 1.4em;
    resize: none;
@@ -104,6 +108,10 @@
 
 .uploadIconContainer {
    border: 1px solid var(--lightgray);
+}
+
+.uploadIconContainer,
+.uploadIconContainerError {
    border-radius: 5px;
    height: 6em;
    width: 6em;
@@ -115,12 +123,14 @@
 .uploadContainer,
 .uploadIconContainer,
 .previewUpload,
-.deleteUpload {
+.deleteUpload,
+.uploadIconContainerError {
    cursor: pointer;
 }
 
 .uploadIcon:hover,
-.uploadIconContainer:hover {
+.uploadIconContainer:hover,
+.uploadIconContainerError:hover {
    opacity: 0.8;
 }
 
